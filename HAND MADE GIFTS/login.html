@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - HomeMadeGifts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+   
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1f1f1f, #3a3a3a);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow: hidden;
+      animation: bgMove 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes bgMove {
+      0% { background-size: 100% 100%; }
+      100% { background-size: 120% 120%; }
+    }
+
+   
+    .login-box {
+      width: 100%;
+      max-width: 380px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      animation: fadeIn 0.9s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .login-box h2 {
+      margin-bottom: 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    
+    label {
+      display: block;
+      text-align: left;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      margin-bottom: 0.3rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    input {
+      width: 100%;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      background: rgba(255,255,255,0.9);
+      color: #333;
+      font-size: 0.95rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    input:focus {
+      transform: scale(1.03);
+      box-shadow: 0 0 8px #ffb347;
+    }
+
+   
+    .btn-primary, .btn-secondary {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      margin-top: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: #e91e63;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .btn-primary:hover {
+      background: #fbe4ec;
+      transform: scale(1.05);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+    }
+    .btn-secondary:hover {
+      background: #fff;
+      color: #e91e63;
+      transform: scale(1.05);
+    }
+
+   
+    .separator {
+      margin: 1.5rem 0;
+      font-size: 0.85rem;
+      color: #eee;
+      position: relative;
+      text-align: center;
+    }
+
+    .separator span::before,
+    .separator span::after {
+      content: "";
+      position: absolute;
+      width: 35%;
+      height: 1px;
+      background: rgba(255,255,255,0.4);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .separator span::before { left: 0; }
+    .separator span::after { right: 0; }
+
+    .footer-text {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.75);
+    }
+
+    
+    @media (max-width: 480px) {
+      .login-box {
+        width: 90%;
+        padding: 1.6rem;
+      }
+
+      input, .btn-primary, .btn-secondary {
+        font-size: 0.95rem;
+      }
+
+      .btn-primary, .btn-secondary {
+        padding: 0.65rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-box">
+    <h2>Welcome Back 💫</h2>
+
+    <form id="login-form">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="e.g. user@homemadegifts.com" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" required>
+
+      <button type="submit" class="btn-primary">Login</button>
+    </form>
+
+    <p class="separator"><span>New to HomeMadeGifts?</span></p>
+    <button class="btn-secondary" onclick="window.location.href='create-account.html'">Create your account</button>
+
+    <p class="footer-text">© 2025 HomeMadeGifts | All Rights Reserved</p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      if (localStorage.getItem('user_logged_in') === 'true') {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      document.getElementById('login-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        if (!email || !password) {
+          alert('⚠️ Please enter both email and password.');
+          return;
+        }
+
+        const users = JSON.parse(localStorage.getItem('registered_users')) || [];
+        const user = users.find(
+          u => u.email.toLowerCase() === email.toLowerCase() && u.password === password
+        );
+
+        if (!user) {
+          alert('❌ Invalid email or password.');
+          return;
+        }
+
+        
+        const userIdentifier = user.email; 
+        const cartKey = `homemade_cart_user_${userIdentifier}`;
+
+       
+        localStorage.setItem('user_logged_in', 'true');
+        localStorage.setItem('user_data', JSON.stringify({
+          email: user.email,
+          id: userIdentifier,
+          isNewUser: user.isNewUser || 'false'
+        }));
+
+       
+        localStorage.removeItem('user_email');
+        localStorage.removeItem('loggedInUser');
+
+        
+        if (!localStorage.getItem(cartKey)) {
+          localStorage.setItem(cartKey, JSON.stringify([]));
+        }
+
+        alert(`🎉 Welcome back, ${email.split('@')[0]}!`);
+        window.location.href = 'index.html';
+      });
+    });
+  </script>
+</body>
+</html>
