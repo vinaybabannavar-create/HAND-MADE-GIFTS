@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Dashboard - HomeMadeGifts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary-color: #febd69;
+      --secondary-color: #232f3e;
+      --accent-color: #007185;
+      --background-color: #f7f7f7;
+      --text-color: #1a1a1a;
+      --border-color: #e0e0e0;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Roboto", sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    
+    .main-header {
+      background-color: #131921;
+      color: white;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      flex-wrap: wrap;
+    }
+
+    .shop-logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .user-nav {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .user-nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .badge {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background-color: #f08804;
+      color: white;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      padding: 2px 6px;
+    }
+
+    .main-nav {
+      background-color: var(--secondary-color);
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 10px 0;
+    }
+
+    .main-nav a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      background-color: var(--primary-color);
+      color: var(--secondary-color);
+      font-weight: 600;
+    }
+
+    
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .dashboard-header h1 {
+      font-size: 1.6rem;
+      color: var(--secondary-color);
+    }
+
+    .orders-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .order-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 20px;
+      border-left: 5px solid var(--accent-color);
+      transition: transform 0.2s;
+    }
+
+    .order-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed var(--border-color);
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .order-header .total-amount {
+      color: #b12704;
+    }
+
+    .order-details p {
+      margin-bottom: 5px;
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    .item-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+    }
+
+    .item-list li {
+      font-size: 0.85rem;
+      padding: 2px 0;
+      color: #555;
+    }
+
+    .empty-orders-message {
+      background: white;
+      border-radius: 8px;
+      text-align: center;
+      padding: 50px 20px;
+      font-size: 1.1rem;
+      color: #555;
+      box-shadow: var(--shadow);
+    }
+
+    .empty-orders-message a {
+      display: inline-block;
+      margin-top: 10px;
+      text-decoration: none;
+      color: var(--accent-color);
+      font-weight: 600;
+    }
+
+    .main-footer {
+      background-color: #222;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+ /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+      }
+
+      .main-nav a {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+      }
+
+      .dashboard-header h1 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="main-header">
+    <div class="header-top">
+      <a href="index.html" class="shop-logo">HomeMadeGifts🛍️</a>
+      <nav class="user-nav">
+        <a href="login.html" id="login-link">Sign In / Register</a>
+        <a href="cart.html" class="cart-icon">🛒 <span id="cart-count" class="badge">0</span></a>
+      </nav>
+    </div>
+
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About & How to Order</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="cart.html">Shopping Cart</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="dashboard-header">
+      <h1>Your Order History</h1>
+      <p id="welcome-message"></p>
+    </div>
+
+    <div id="orders-list" class="orders-grid"></div>
+
+    <div id="empty-orders-message" class="empty-orders-message" style="display: none;">
+      <p>You haven’t placed any orders yet.</p>
+      <a href="index.html">Start Shopping →</a>
+    </div>
+  </main>
+
+  <footer class="main-footer">
+    <p>© 2025 HomeMadeGifts. Contact: littlehoopsandhampers@gmail.com</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      function getUserData() {
+        return JSON.parse(localStorage.getItem("user_data"));
+      }
+
+      function getUserId() {
+        const user = getUserData();
+        return user ? (user.id || user.email) : null;
+      }
+
+      function getCart() {
+        const userId = getUserId();
+        const cartKey = userId ? `homemade_cart_user_${userId}` : "homemade_cart_guest";
+        const cartData = localStorage.getItem(cartKey);
+        return cartData ? JSON.parse(cartData) : [];
+      }
+
+      function updateCartCount() {
+        const cart = getCart();
+        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+        document.getElementById("cart-count").textContent = totalItems;
+      }
+
+      
+      function checkLoginStatus() {
+        const userLoggedIn = localStorage.getItem("user_logged_in") === "true";
+        const user = getUserData();
+
+        const loginLink = document.getElementById("login-link");
+        const welcomeMsg = document.getElementById("welcome-message");
+
+        if (!userLoggedIn || !user) {
+          alert("Please log in to view your dashboard.");
+          window.location.href = "login.html";
+          return null;
+        }
+
+        const userName = user.email ? user.email.split("@")[0] : "User";
+        loginLink.textContent = `Hello, ${userName} (Logout)`;
+        loginLink.href = "#";
+        loginLink.addEventListener("click", handleLogout);
+        welcomeMsg.textContent = `Welcome, ${userName}!`;
+        return user.id || user.email;
+      }
+
+      function handleLogout(e) {
+        e.preventDefault();
+        if (confirm("Are you sure you want to logout?")) {
+          const userId = getUserId();
+          localStorage.removeItem("user_logged_in");
+          localStorage.removeItem("user_data");
+          if (userId) {
+            localStorage.removeItem(`homemade_cart_user_${userId}`);
+          }
+          alert("You have been logged out successfully.");
+          window.location.href = "login.html";
+        }
+      }
+
+     
+      function renderOrders(userId) {
+        const ordersList = document.getElementById("orders-list");
+        const emptyMessage = document.getElementById("empty-orders-message");
+
+        const allOrders = JSON.parse(localStorage.getItem("homemade_orders")) || [];
+        const userOrders = allOrders.filter(o => o.user_email === userId);
+
+        if (userOrders.length === 0) {
+          ordersList.style.display = "none";
+          emptyMessage.style.display = "block";
+          return;
+        }
+
+        emptyMessage.style.display = "none";
+        ordersList.style.display = "flex";
+
+        ordersList.innerHTML = userOrders.map(order => {
+          const items = order.items.map(i =>
+            `<li>${i.name} x ${i.quantity} (₹${parseFloat(i.currentPrice).toFixed(2)})</li>`
+          ).join("");
+
+          return `
+            <div class="order-card">
+              <div class="order-header">
+                <span>Order ID: #${order.id.toString().slice(-6)}</span>
+                <span class="total-amount">₹${order.totalAmount}</span>
+              </div>
+              <div class="order-details">
+                <p><strong>Date:</strong> ${order.date}</p>
+                <p><strong>Status:</strong> <span style="color:${order.paymentMode === "COD" ? "#007185" : "#4CAF50"};">Confirmed</span></p>
+                <p><strong>Payment:</strong> ${order.paymentMode}</p>
+                <p><strong>Shipping to:</strong> ${order.shipping.address.substring(0, 60)}...</p>
+                <strong>Items Ordered:</strong>
+                <ul class="item-list">${items}</ul>
+              </div>
+            </div>`;
+        }).join("");
+      }
+
+      
+      updateCartCount();
+      const userId = checkLoginStatus();
+      if (userId) renderOrders(userId);
+    });
+  </script>
+</body>
+</html>

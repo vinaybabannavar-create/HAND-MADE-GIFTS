@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - HomeMadeGifts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-color: #febd69;
+      --secondary-color: #232f3e;
+      --background-color: #f7f7f7;
+      --accent-color: #007185;
+      --border-color: #e0e0e0;
+      --text-color: #111;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    /* ===== HEADER ===== */
+    .main-header {
+      background-color: #131921;
+      color: white;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      flex-wrap: wrap;
+    }
+
+    .shop-logo a {
+      color: var(--primary-color);
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .user-nav {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .user-nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .badge {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background-color: #f08804;
+      color: white;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      padding: 2px 6px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #222;
+      margin-bottom: 20px;
+    }
+
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: 2fr 1.2fr;
+      gap: 30px;
+    }
+
+    .shipping-details,
+    .summary-and-payment {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      padding: 20px;
+    }
+
+    h3 {
+      color: var(--accent-color);
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .btn-location {
+      background-color: var(--accent-color);
+      color: white;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .btn-location:hover {
+      background-color: #005f70;
+    }
+
+    .offer-box {
+      margin-bottom: 20px;
+      padding: 10px;
+      border-radius: 5px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .order-totals p {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .final-total {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #b12704;
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
+    }
+
+    .payment-options {
+      margin-top: 15px;
+    }
+
+    .payment-options label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-color);
+      color: #111;
+      border: none;
+      padding: 12px;
+      border-radius: 5px;
+      width: 100%;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #f9a43a;
+    }
+
+    .main-footer {
+      background-color: #222;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .checkout-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="main-header">
+    <div class="header-top">
+      <div class="shop-logo"><a href="index.html">HomeMadeGifts🛍️</a></div>
+      <nav class="user-nav">
+        <a href="login.html" id="login-link">Sign In / Register</a>
+        <a href="cart.html">🛒 <span id="cart-count" class="badge">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>Complete Your Order</h2>
+    <form id="order-form" class="checkout-grid">
+      <section class="shipping-details">
+        <h3>1. Shipping Information</h3>
+
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required placeholder="Enter your full name" />
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" required placeholder="+91 98765 43210" />
+
+        <label for="address">Shipping Address</label>
+        <textarea id="address" rows="3" required placeholder="Flat No., Street, Area, Pincode, City, State"></textarea>
+
+        <label for="live-location">Live Location (Optional)</label>
+        <button type="button" id="get-location-btn" class="btn-location">📍 Get My Current Location</button>
+        <input type="text" id="live-location" placeholder="Latitude, Longitude" readonly />
+      </section>
+
+      <section class="summary-and-payment">
+        <h3>2. Order Summary & Payment</h3>
+
+        <div id="user-offer" class="offer-box"></div>
+
+        <div class="order-totals">
+          <p>Items Subtotal: <strong>₹<span id="subtotal-checkout">0.00</span></strong></p>
+          <p>Discount Applied: <strong>-₹<span id="discount-checkout">0.00</span></strong></p>
+          <p class="final-total">Total: ₹<span id="total-checkout">0.00</span></p>
+        </div>
+
+        <h3>3. Payment Method</h3>
+        <div class="payment-options">
+          <label><input type="radio" name="payment-mode" value="COD" checked /> Cash on Delivery (COD)</label>
+          <label><input type="radio" name="payment-mode" value="Online" /> Online Payment (Simulated)</label>
+        </div>
+
+        <button type="submit" class="btn-primary">Place Order & Send Email</button>
+      </section>
+    </form>
+  </main>
+
+  <footer class="main-footer">
+    <p>© 2025 HomeMadeGifts. Contact: littlehoopsandhampers@gmail.com</p>
+  </footer>
+
+  <script>
+    const ADMIN_EMAIL = "littlehoopsandhampers@gmail.com";
+
+    function getUser() {
+      return JSON.parse(localStorage.getItem("user_data"));
+    }
+
+    function getCartKey() {
+      const user = getUser();
+      return user && (user.id || user.email)
+        ? `homemade_cart_user_${user.id || user.email}`
+        : "homemade_cart_guest";
+    }
+
+    function getCart() {
+      const data = localStorage.getItem(getCartKey());
+      return data ? JSON.parse(data) : [];
+    }
+
+    function updateCartCount() {
+      const total = getCart().reduce((s, i) => s + i.quantity, 0);
+      document.getElementById("cart-count").textContent = total;
+    }
+
+    function checkLoginStatus() {
+      const link = document.getElementById("login-link");
+      const loggedIn = localStorage.getItem("user_logged_in") === "true";
+      const user = getUser();
+
+      if (loggedIn && user) {
+        const name = user.email.split("@")[0];
+        link.textContent = `Hello, ${name} (Logout)`;
+        link.href = "#";
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          localStorage.removeItem("user_logged_in");
+          localStorage.removeItem("user_data");
+          localStorage.removeItem(getCartKey());
+          window.location.href = "login.html";
+        });
+      } else {
+        link.textContent = "Sign In / Register";
+        link.href = "login.html";
+      }
+    }
+
+    document.getElementById("get-location-btn").addEventListener("click", () => {
+      const field = document.getElementById("live-location");
+      field.value = "Fetching...";
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const lat = pos.coords.latitude.toFixed(6);
+            const lon = pos.coords.longitude.toFixed(6);
+            field.value = `Lat: ${lat}, Lon: ${lon}`;
+            alert("✅ Location captured!");
+          },
+          () => {
+            field.value = "Location unavailable";
+            alert("⚠️ Unable to get location");
+          }
+        );
+      } else alert("Geolocation not supported.");
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const userLoggedIn = localStorage.getItem("user_logged_in") === "true";
+      const user = getUser();
+      const cart = getCart();
+
+      if (!userLoggedIn || !user || cart.length === 0) {
+        alert("Please log in and ensure your cart has items before checkout.");
+        window.location.href = "cart.html";
+        return;
+      }
+
+      updateCartCount();
+      checkLoginStatus();
+
+    
+      let subtotal = 0,
+        discount = 0;
+      cart.forEach((i) => {
+        const o = parseFloat(i.originalPrice) || i.currentPrice;
+        const c = parseFloat(i.currentPrice);
+        subtotal += o * i.quantity;
+        discount += (o - c) * i.quantity;
+      });
+
+      let total = subtotal - discount;
+      const offerBox = document.getElementById("user-offer");
+      if (user.isNewUser === "true") {
+        const extra = total * 0.1;
+        total -= extra;
+        discount += extra;
+        offerBox.textContent = "✨ First-Time Offer: Extra 10% Discount Applied!";
+        offerBox.style.backgroundColor = "#e6f7ff";
+      } else {
+        offerBox.textContent = "🎁 Welcome back! Enjoy your shopping.";
+        offerBox.style.backgroundColor = "#fff0e6";
+      }
+
+      document.getElementById("subtotal-checkout").textContent = subtotal.toFixed(2);
+      document.getElementById("discount-checkout").textContent = discount.toFixed(2);
+      document.getElementById("total-checkout").textContent = total.toFixed(2);
+
+     
+      document.getElementById("order-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("name").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const address = document.getElementById("address").value.trim();
+        const location = document.getElementById("live-location").value.trim();
+        const paymentMode = document.querySelector('input[name="payment-mode"]:checked').value;
+
+        const items = cart
+          .map((i) => `• ${i.name} x ${i.quantity} (₹${i.currentPrice})`)
+          .join("\n");
+
+        const emailBody = `
+New Order Received!
+
+Customer: ${user.email}
+Payment Mode: ${paymentMode}
+Total: ₹${total.toFixed(2)}
+
+Items:
+${items}
+
+Shipping:
+${name}, ${phone}
+${address}
+${location || "Location not shared"}
+        `;
+
+        const subject = encodeURIComponent(`NEW ORDER - ₹${total.toFixed(2)}`);
+        const body = encodeURIComponent(emailBody);
+        window.open(`mailto:${ADMIN_EMAIL}?subject=${subject}&body=${body}`, "_blank");
+
+       
+        const orders = JSON.parse(localStorage.getItem("homemade_orders")) || [];
+        orders.push({
+          id: Date.now(),
+          user_email: user.email,
+          totalAmount: total.toFixed(2),
+          paymentMode,
+          date: new Date().toLocaleString(),
+          shipping: { name, phone, address, location },
+          items: cart,
+        });
+        localStorage.setItem("homemade_orders", JSON.stringify(orders));
+
+        
+        localStorage.removeItem(getCartKey());
+        alert("✅ Order placed successfully!");
+        window.location.href = "dashboard.html";
+      });
+    });
+  </script>
+</body>
+</html>

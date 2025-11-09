@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Made Products & Gift Hampers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+   
+ <style>
+   
+    :root {
+      --primary-color: #febd69;
+      --secondary-color: #232f3e;
+      --accent-color: #007185;
+      --text-color: #1a1a1a;
+      --background-color: #f7f7f7;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: var(--text-color);
+      background-color: var(--background-color);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--accent-color);
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #c7511f;
+    }
+
+    
+    .main-header {
+      background-color: var(--secondary-color);
+      color: var(--white);
+      padding: 10px 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-top {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .shop-logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    
+    .search-container {
+      flex-grow: 1;
+      max-width: 600px;
+      margin: 10px 20px;
+      position: relative;
+    }
+
+    .search-bar {
+      display: flex;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px 0 0 6px;
+      font-size: 16px;
+    }
+    .search-bar button {
+      background-color: var(--primary-color);
+      border: none;
+      padding: 10px 15px;
+      border-radius: 0 6px 6px 0;
+      cursor: pointer;
+      font-size: 18px;
+      color: var(--secondary-color);
+    }
+
+    #search-suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--white);
+      border: 1px solid #ddd;
+      border-top: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-height: 200px;
+      overflow-y: auto;
+      display: none;
+      border-radius: 0 0 6px 6px;
+    }
+
+    .suggestion-item {
+      padding: 10px;
+      cursor: pointer;
+      color: #333;
+    }
+    .suggestion-item:hover {
+      background-color: #f0f2f5;
+    }
+
+    
+    .user-nav a {
+      color: var(--white);
+      margin-left: 15px;
+      position: relative;
+      font-weight: 500;
+    }
+
+    .badge {
+      background-color: #f08804;
+      color: var(--white);
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 0.75em;
+      position: absolute;
+      top: -8px;
+      right: -10px;
+    }
+
+   
+    .main-nav {
+      background-color: #131921;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding: 10px;
+    }
+
+    .main-nav a {
+      color: var(--white);
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .main-nav a.active {
+      background-color: var(--primary-color);
+      color: var(--secondary-color);
+      font-weight: bold;
+    }
+
+    .main-nav a:hover {
+      background-color: #37475a;
+      color: var(--primary-color);
+    }
+
+    
+    .hero-section {
+      background-color: #e3e6e6;
+      padding: 50px 20px;
+      text-align: center;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .hero-section h1 {
+      font-size: 2.2rem;
+      color: var(--accent-color);
+      margin-bottom: 10px;
+    }
+
+    .hero-section p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-color);
+      border: 1px solid #a88734;
+      padding: 10px 20px;
+      color: #111;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    .btn-primary:hover {
+      background-color: #f7d28c;
+    }
+
+   
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .product-card {
+      background-color: #fff;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      padding: 15px;
+      text-align: center;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .product-card h3 {
+      font-size: 1.1rem;
+      margin: 5px 0;
+      color: #333;
+    }
+
+    .rating {
+      color: #ff9900;
+      margin-bottom: 5px;
+    }
+
+    .product-price {
+      font-size: 1.3rem;
+      color: #b12704;
+      font-weight: bold;
+    }
+
+    .discount-info {
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+
+    .original-price {
+      text-decoration: line-through;
+      color: #777;
+      margin-right: 8px;
+    }
+
+    .offer-percent {
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+
+    .quantity-selector {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px 0;
+    }
+
+    .qty-btn {
+      background-color: #ddd;
+      border: none;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 4px;
+    }
+
+    .qty-btn:hover {
+      background-color: #bbb;
+    }
+
+    .quantity-selector input {
+      width: 45px;
+      text-align: center;
+      margin: 0 5px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .btn-add-to-cart {
+      background-color: var(--primary-color);
+      color: #111;
+      border: 1px solid #a88734;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 6px;
+      width: 100%;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn-add-to-cart:hover {
+      background-color: #f7d28c;
+    }
+
+    
+    .main-footer {
+      background-color: var(--secondary-color);
+      color: var(--white);
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+
+    
+    @media (max-width: 768px) {
+      .shop-logo {
+        font-size: 1.5rem;
+      }
+
+      .product-card img {
+        height: 220px;
+      }
+
+      .hero-section h1 {
+        font-size: 1.6rem;
+      }
+
+      .hero-section p {
+        font-size: 1rem;
+      }
+
+      .main-nav {
+        flex-direction: column;
+      }
+
+     
+      .main-header {
+        position: relative;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-card img {
+        height: 200px;
+      }
+
+      .btn-add-to-cart {
+        font-size: 0.9rem;
+        padding: 8px;
+      }
+
+      .quantity-selector input {
+        width: 38px;
+      }
+
+      .hero-section {
+        padding: 30px 10px;
+      }
+    }
+
+   
+    main, .container, .hero-section, .product-grid {
+      scroll-margin-top: 100px;
+      margin-top: 90px;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="main-header">
+    <div class="header-top">
+      <div class="shop-logo">HomeMadeGifts🛍️</div>
+
+      <div class="search-container">
+        <div class="search-bar">
+          <input type="text" id="search-input" placeholder="Search for Gifts, Hampers, or Products...">
+          <button id="search-button">🔍</button>
+        </div>
+        <div id="search-suggestions"></div>
+      </div>
+
+      <nav class="user-nav">
+        <a href="login.html" id="login-link">Sign In / Register</a>
+        <a href="cart.html" class="cart-icon">🛒 <span id="cart-count" class="badge">0</span></a>
+      </nav>
+    </div>
+
+    <nav class="main-nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About & How to Order</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="cart.html">Shopping Cart</a>
+    </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero-section">
+         
+           <h1>Handcrafted Love, Delivered to You!</h1>
+            <p>Unique homemade products and custom gift hampers for every occasion.</p>
+            <a href="#featured-products" class="btn-primary">Explore Products</a>
+        </section>
+
+        <h2>🎁 Featured Gift Hampers</h2>
+        <section class="product-grid" id="featured-products">
+            
+            <div class="product-card" data-search-term="Diwal Hamper">
+ 
+                <a href="#" class="product-link"><img src="https://i.ibb.co/3mtx5jbF/2.jpg" alt="Diwal Hamper"></a>
+                <div class="card-info">
+                    <h3 class="product-name">Diwal Hamper</h3>
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    
+ <p class="discount-info">
+                        <span class="original-price">₹449</span>
+                        <span class="offer-percent">22% OFF</span>
+                    </p>
+                    <p class="product-price">₹349</p>
+       
+                   <div class="quantity-selector">
+                        <button class="qty-btn" data-action="decrement" data-target="qty-1">-</button>
+                        <input type="number" id="qty-1" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-1">+</button>
+                    </div>
+      
+                   <button class="btn-add-to-cart" data-id="1" data-name="Diwal Hamper" data-price="449" data-discount="23" data-qty-input="qty-1">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-search-term="Mini Diwal Box">
+                <a href="#" class="product-link"><img src="https://i.ibb.co/TMBgYDjV/4.jpg" alt="Mini Diwal Box"></a>
+           
+                 <div class="card-info">
+                    <h3 class="product-name">Mini Diwal Box</h3>
+                    <div class="rating">⭐⭐⭐⭐</div>
+                    <p class="discount-info">
+                        <span class="original-price">₹280</span>
+    
+                         <span class="offer-percent">35% OFF</span>
+                    </p>
+                    <p class="product-price">₹182</p>
+                    <div class="quantity-selector">
+                
+                        <button class="qty-btn" data-action="decrement" data-target="qty-2">-</button>
+                        <input type="number" id="qty-2" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-2">+</button>
+                    </div>
+                    <button class="btn-add-to-cart" data-id="2" data-name="Mini Diwal Box" data-price="280" data-discount="35" data-qty-input="qty-2">Add to Cart</button>
+      
+                   </div>
+            </div>
+
+            <div class="product-card" data-search-term="Handmade Diwali Card">
+                <a href="#" class="product-link"><img src="https://i.ibb.co/LdX51RYp/5.jpg" alt="Handmade Diwali Card"></a>
+                <div class="card-info">
+                    <h3 class="product-name">Handmade Diwali 
+ Card</h3>
+                    <div class="rating">⭐⭐⭐⭐</div>
+                    <p class="discount-info">
+                        <span class="original-price">49₹</span>
+                        <span class="offer-percent">45% OFF</span>
+       
+                     </p>
+                    <p class="product-price">₹25</p>
+                    <div class="quantity-selector">
+                        <button class="qty-btn" data-action="decrement" data-target="qty-3">-</button>
+                  
+                       <input type="number" id="qty-3" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-3">+</button>
+                    </div>
+                    <button class="btn-add-to-cart" data-id="3" data-name="Handmade Diwali Card" data-price="49" data-discount="45" data-qty-input="qty-3">Add to Cart</button>
+                </div>
+            </div>
+       
+         
+             <div class="product-card" data-search-term="Luxury Diwali Hamper">
+                <a href="#" class="product-link"><img src="https://i.ibb.co/bjwwCwTv/6.jpg" alt="Luxury Diwali Hamper"></a>
+                <div class="card-info">
+                    <h3 class="product-name">Luxury Diwali Hamper</h3>
+                 
+                   <div class="rating">⭐⭐⭐⭐</div>
+                    <p class="discount-info">
+                        <span class="original-price">₹2,499</span>
+                        <span class="offer-percent">50% OFF</span>
+                    </p>
+    
+                     <p class="product-price">₹1249</p>
+                    <div class="quantity-selector">
+                        <button class="qty-btn" data-action="decrement" data-target="qty-4">-</button>
+                        <input type="number" id="qty-4" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-4">+</button>
+  
+                   </div>
+                    <button class="btn-add-to-cart" data-id="4" data-name="Luxury Diwali Hamper" data-price="2499" data-discount="50" data-qty-input="qty-4">Add to Cart</button>
+                </div>
+            </div>
+            
+            
+           <div class="product-card" data-search-term="Diwali Hamper">
+                <a href="#" class="product-link"><img src="https://i.ibb.co/HL4LDY2M/3.jpg" alt="Diwali Hamper"></a>
+                <div class="card-info">
+                    <h3 class="product-name">Diwali Hamper</h3>
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                
+                 <p class="discount-info">
+                        <span class="original-price">₹499</span>
+                        <span class="offer-percent">20% OFF</span>
+                    </p>
+                    <p class="product-price">₹399</p>
+   
+                     <div class="quantity-selector">
+                        <button class="qty-btn" data-action="decrement" data-target="qty-5">-</button>
+                        <input type="number" id="qty-5" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-5">+</button>
+                    </div>
+  
+                   <button class="btn-add-to-cart" data-id="5" data-name="Diwali Hamper" data-price="499" data-discount="20" data-qty-input="qty-5">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-search-term="Diwali hamper box">
+                <a href="#" class="product-link"><img src="https://i.ibb.co/XZYZmR6z/1.jpg" alt="Diwali hamper box"></a>
+       
+                 <div class="card-info">
+                    <h3 class="product-name">Diwali hamper box</h3>
+                    <div class="rating">⭐⭐⭐⭐</div>
+                    <p class="discount-info">
+                        <span 
+ class="original-price">₹399</span>
+                        <span class="offer-percent">30% OFF</span>
+                    </p>
+                    <p class="product-price">₹279.30</p>
+                    <div class="quantity-selector">
+            
+                        <button class="qty-btn" data-action="decrement" data-target="qty-6">-</button>
+                        <input type="number" id="qty-6" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-6">+</button>
+                    </div>
+                    <button class="btn-add-to-cart" data-id="6" data-name="Diwali hamper box" data-price="399" data-discount="30" data-qty-input="qty-6">Add to Cart</button>
+  
+                   </div>
+            </div>
+            <div class="product-card" data-search-term="Customised Birthday Hamper">
+                <a href="#" class="product-link"><img src="https://i.ibb.co/n8B41b3z/8.jpg" alt="Customised Birthday Hamper"></a>
+                <div class="card-info">
+                   
+                     <h3 class="product-name">Customised Birthday Hamper</h3>
+                    <div class="rating">⭐⭐⭐⭐</div>
+                    <p class="discount-info">
+                        <span class="original-price">₹2999</span>
+                        <span class="offer-percent">25% OFF</span>
+   
+                     </p>
+                    <p class="product-price">₹2249.25</p>
+                    <div class="quantity-selector">
+                        <button class="qty-btn" data-action="decrement" data-target="qty-7">-</button>
+              
+                        <input type="number" id="qty-7" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-7">+</button>
+                    </div>
+                    <button class="btn-add-to-cart" data-id="7" data-name="Customised Birthday Hamper" data-price="2999" data-discount="25" data-qty-input="qty-7">Add to Cart</button>
+                </div>
+            </div>
+   
+             <div class="product-card" data-search-term="Hand Embroidered Handkerchief">
+                <a href="#" class="product-link"><img src="https://i.ibb.co/m5QSLz6Z/9.jpg" alt="Hand Embroidered Handkerchief"></a>
+                <div class="card-info">
+                    <h3 class="product-name">Hand Embroidered Handkerchief</h3>
+                    <div class="rating">⭐⭐⭐⭐</div>
+    
+                     <p class="discount-info">
+                        <span class="original-price">₹249</span>
+                        <span class="offer-percent">60% OFF</span>
+                    </p>
+            
+                     <p class="product-price">₹99.60</p>
+                    <div class="quantity-selector">
+                        <button class="qty-btn" data-action="decrement" data-target="qty-8">-</button>
+                        <input type="number" id="qty-8" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-8">+</button>
+          
+                       </div>
+                    <button class="btn-add-to-cart" data-id="8" data-name="Hand Embroidered Handkerchief" data-price="249" data-discount="60" data-qty-input="qty-8">Add to Cart</button>
+                </div>
+            </div>
+          
+              <div class="product-card" data-search-term="Birthday hamper box">
+    
+                 <a href="#" class="product-link"><img src="https://i.ibb.co/G4BTfLqJ/10.jpg" alt="Birthday hamper box"></a>
+                <div class="card-info">
+                    <h3 class="product-name">Birthday hamper box</h3>
+                    <div class="rating">⭐⭐⭐⭐</div>
+                    <p 
+ class="discount-info">
+                        <span class="original-price">₹809</span>
+                        <span class="offer-percent">15% OFF</span>
+                    </p>
+                    <p class="product-price">₹687.65</p>
+        
+                     <div class="quantity-selector">
+                        <button class="qty-btn" data-action="decrement" data-target="qty-9">-</button>
+                        <input type="number" id="qty-9" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-9">+</button>
+                    </div>
+       
+                     <button class="btn-add-to-cart" data-id="9" data-name="Birthday hamper box" data-price="809" data-discount="15" data-qty-input="qty-9">Add to Cart</button>
+                </div>
+            </div>
+          
+            <div class="product-card" data-search-term="Customised S Letter handkerchief">
+                <a href="#" class="product-link"><img src="https://i.ibb.co/SXVbDd5t/12.jpg" alt="Customised S 
+ Letter handkerchief"></a>
+                <div class="card-info">
+                    <h3 class="product-name">Customised S Letter handkerchief </h3>
+                    <div class="rating">⭐⭐⭐⭐</div>
+                    <p class="discount-info">
+               
+                         <span class="original-price">₹199</span>
+                        <span class="offer-percent">50% OFF</span>
+                    </p>
+                    <p class="product-price">₹99.50</p>
+                    <div class="quantity-selector">
+  
+                       <button class="qty-btn" data-action="decrement" data-target="qty-10">-</button>
+                        <input type="number" id="qty-10" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-10">+</button>
+                    </div>
+                    <button class="btn-add-to-cart" 
+ data-id="10" data-name="Customised S Letter handkerchief" data-price="199" data-discount="50" data-qty-input="qty-10">Add to Cart</button>
+                </div>
+            </div>
+          
+           
+            <div class="product-card" data-search-term="Heart Shaped Chocolate Box">
+                <a href="#" class="product-link"><img src="https://i.ibb.co/Jj1R7dr4/14.jpg" alt="Heart Shaped Chocolate Box"></a>
+  
+                   <div class="card-info">
+                    <h3 class="product-name">Heart Shaped Chocolate Box</h3>
+                    <div class="rating">⭐⭐⭐⭐</div>
+                    <p class="discount-info">
+                   
+                         <span class="original-price">₹299</span>
+                        <span class="offer-percent">30% OFF</span>
+                    </p>
+                    <p class="product-price">₹209.30</p>
+                    <div class="quantity-selector">
+      
+                       <button class="qty-btn" data-action="decrement" data-target="qty-11">-</button>
+                        <input type="number" id="qty-11" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-11">+</button>
+                    </div>
+                    <button class="btn-add-to-cart" data-id="11" data-name="Heart Shaped Chocolate 
+ Box" data-price="299" data-discount="30" data-qty-input="qty-11">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-search-term="Birthday hamper box">
+                <a href="#" class="product-link"><img src="https://i.ibb.co/gZWSc95H/15.jpg" alt="Birthday hamper box"></a>
+                <div class="card-info">
+            
+                 <h3 class="product-name">Birthday hamper box</h3>
+                    <div class="rating">⭐⭐⭐⭐</div>
+                    <p class="discount-info">
+                        <span class="original-price">₹899</span>
+                      
+                       <span class="offer-percent">11% OFF</span>
+                    </p>
+                    <p class="product-price">₹800.11</p>
+                    <div class="quantity-selector">
+                        <button class="qty-btn" data-action="decrement" data-target="qty-12">-</button>
+       
+                         <input type="number" id="qty-12" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-12">+</button>
+                    </div>
+                    <button class="btn-add-to-cart" data-id="12" data-name="Birthday hamper box" data-price="899" data-discount="11" data-qty-input="qty-12">Add to Cart</button>
+                </div>
+        
+             </div>
+            <div class="product-card" data-search-term="Handmade Birthday Letter">
+                <a href="#" class="product-link"><img src="https://i.ibb.co/0pXTZhSc/16.jpg" alt="Handmade Birthday Letter"></a>
+                <div class="card-info">
+                    <h3 class="product-name">Handmade Birthday Letter</h3>
+                  
+                   <div class="rating">⭐⭐⭐⭐</div>
+                    <p class="discount-info">
+                        <span class="original-price">₹299</span>
+                        <span class="offer-percent">50% OFF</span>
+                    </p>
+     
+                     <p class="product-price">₹149.50</p>
+                    <div class="quantity-selector">
+                        <button class="qty-btn" data-action="decrement" data-target="qty-13">-</button>
+                        <input type="number" id="qty-13" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-13">+</button>
+   
+                   </div>
+                    <button class="btn-add-to-cart" data-id="13" data-name="Handmade Birthday Letter" data-price="299" data-discount="50" data-qty-input="qty-13">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-search-term="Handmade Woolen Keychain">
+         
+                 <a href="#" class="product-link"><img src="https://i.ibb.co/HTv5mMN9/17.jpg" alt="Handmade Woolen Keychain"></a>
+                <div class="card-info">
+                    <h3 class="product-name">Handmade Woolen Keychain</h3>
+                    <div class="rating">⭐⭐⭐⭐</div>
+                    <p class="discount-info">
+     
+                         <span class="original-price">₹199</span>
+                        <span class="offer-percent">40% OFF</span>
+                    </p>
+                    <p class="product-price">₹119.40</p>
+             
+                       <div class="quantity-selector">
+                        <button class="qty-btn" data-action="decrement" data-target="qty-14">-</button>
+                        <input type="number" id="qty-14" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-14">+</button>
+                    </div>
+            
+                     <button class="btn-add-to-cart" data-id="14" data-name="Handmade Woolen Keychain" data-price="199" data-discount="40" data-qty-input="qty-14">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-search-term="A Letter Customisable Handkerchief">
+                <a href="#" class="product-link"><img src="https://i.ibb.co/1G7yw201/18.jpg" alt="A Letter Customisable Handkerchief"></a>
+              
+               <div class="card-info">
+                    <h3 class="product-name">A Letter Customisable Handkerchief</h3>
+                    <div class="rating">⭐⭐⭐⭐</div>
+                    <p class="discount-info">
+                        <span class="original-price">₹199</span>
+      
+                       <span class="offer-percent">50% OFF</span>
+                    </p>
+                    <p class="product-price">₹99.50</p>
+                    <div class="quantity-selector">
+                  
+                       <button class="qty-btn" data-action="decrement" data-target="qty-15">-</button>
+                        <input type="number" id="qty-15" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-15">+</button>
+                    </div>
+                    <button class="btn-add-to-cart" data-id="15" data-name="A Letter Customisable Handkerchief" data-price="199" data-discount="50" data-qty-input="qty-15">Add to Cart</button>
+       
+                     </div>
+            </div>
+            <div class="product-card" data-search-term="Hand Embroidered Handkerchief">
+                <a href="#" class="product-link"><img src="https://i.ibb.co/C5J1W3W7/19.jpg" alt="Hand Embroidered Handkerchief"></a>
+                <div class="card-info">
+                    <h3 class="product-name">Hand Embroidered Handkerchief</h3>
+ 
+                   <div class="rating">⭐⭐⭐⭐</div>
+                    <p class="discount-info">
+                        <span class="original-price">₹239</span>
+                        <span class="offer-percent">50% OFF</span>
+        
+                     </p>
+                    <p class="product-price">₹119.50</p>
+                    <div class="quantity-selector">
+                        <button class="qty-btn" data-action="decrement" data-target="qty-16">-</button>
+                   
+                         <input type="number" id="qty-16" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-16">+</button>
+                    </div>
+                    <button class="btn-add-to-cart" data-id="16" data-name="Hand Embroidered Handkerchief" data-price="239" data-discount="50" data-qty-input="qty-16">Add to Cart</button>
+                </div>
+            </div>
+        
+             <div class="product-card" data-search-term="Customisable Embroidered Weddinghoop">
+                <a href="#" class="product-link"><img src="https://i.ibb.co/fV1Gdb1h/21.jpg" alt="Customisable Embroidered Weddinghoop"></a>
+                <div class="card-info">
+                    <h3 class="product-name">Customisable Embroidered Weddinghoop</h3>
+                    <div class="rating">⭐⭐⭐⭐</div>
+         
+                    <p class="discount-info">
+                        <span class="original-price">₹1999</span>
+                        <span class="offer-percent">25% OFF</span>
+                    </p>
+                 
+                   <p class="product-price">₹1499.25</p>
+                    <div class="quantity-selector">
+                        <button class="qty-btn" data-action="decrement" data-target="qty-17">-</button>
+                        <input type="number" id="qty-17" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-17">+</button>
+               
+                       </div>
+                    <button class="btn-add-to-cart" data-id="17" data-name="Customisable Embroidered Weddinghoop" data-price="1999" data-discount="25" data-qty-input="qty-17">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-search-term="Birthday hamper box">
+                <a href="#" class="product-link"><img src="https://i.ibb.co/kVwgdmc0/22.jpg" alt="Birthday 
+ hamper box"></a>
+                <div class="card-info">
+                    <h3 class="product-name">Birthday hamper box</h3>
+                    <div class="rating">⭐⭐⭐⭐</div>
+                    <p class="discount-info">
+                 
+                       <span class="original-price">₹999</span>
+                        <span class="offer-percent">20% OFF</span>
+                    </p>
+                    <p class="product-price">₹799.20</p>
+                    <div class="quantity-selector">
+    
+                         <button class="qty-btn" data-action="decrement" data-target="qty-18">-</button>
+                        <input type="number" id="qty-18" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-18">+</button>
+                    </div>
+                    <button class="btn-add-to-cart" data-id="18" data-name="Birthday 
+ hamper box" data-price="999" data-discount="20" data-qty-input="qty-18">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card" data-search-term="Birthday hamper box">
+                <a href="#" class="product-link"><img src="https://i.ibb.co/FLTW3sF0/24.jpg" alt="Birthday hamper box"></a>
+                <div class="card-info">
+           
+                     <h3 class="product-name">Birthday hamper box</h3>
+                    <div class="rating">⭐⭐⭐⭐</div>
+                    <p class="discount-info">
+                        <span class="original-price">₹1775</span>
+                     
+                       <span class="offer-percent">15% OFF</span>
+                    </p>
+                    <p class="product-price">₹1508.75</p>
+                    <div class="quantity-selector">
+                        <button class="qty-btn" data-action="decrement" data-target="qty-19">-</button>
+      
+                       <input type="number" id="qty-19" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-19">+</button>
+                    </div>
+                    <button class="btn-add-to-cart" data-id="19" data-name="Birthday hamper box" data-price="1775" data-discount="15" data-qty-input="qty-19">Add to Cart</button>
+                </div>
+       
+                 </div>
+            <div class="product-card" data-search-term="Birthday hamper box">
+                <a href="#" class="product-link"><img src="https://i.ibb.co/jPrDGHSP/25.jpg" alt="Birthday hamper box"></a>
+                <div class="card-info">
+                    <h3 class="product-name">Birthday hamper box </h3>
+                
+                 <div class="rating">⭐⭐⭐⭐</div>
+                    <p class="discount-info">
+                        <span class="original-price">₹5069</span>
+                        <span class="offer-percent">10% OFF</span>
+                    </p>
+   
+                     <p class="product-price">₹4553.10</p>
+                    <div class="quantity-selector">
+                        <button class="qty-btn" data-action="decrement" data-target="qty-20">-</button>
+                        <input type="number" id="qty-20" value="1" max="99" readonly> <button class="qty-btn" data-action="increment" data-target="qty-20">+</button>
+ 
+                       </div>
+                    <button class="btn-add-to-cart" data-id="20" data-name="Birthday hamper box" data-price="5059" data-discount="10" data-qty-input="qty-20">Add to Cart</button>
+                </div>
+            </div>
+          
+            
+ 
+            <div id="no-results-message"></div>
+
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy;
+ 2025 HomeMadeGifts. Contact: littlehoopsandhampers@gmail.com</p>
+    </footer>
+
+ <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      
+        const allProducts = [
+             'Diwal Hamper',
+    'Mini Diwal Box',
+    'Handmade Diwali Card',
+    'Luxury Diwali Hamper',
+    'Diwali Hamper',
+    'Diwali hamper box',
+    'Customised Birthday Hamper',
+    'Hand Embroidered Handkerchief',
+    'Birthday hamper box',
+    'Customised S Letter handkerchief',
+    'Heart Shaped Chocolate Box',
+    'Birthday hamper box',
+    'Handmade Birthday Letter',
+    'Handmade Woolen Keychain',
+    'A Letter Customisable Handkerchief',
+    'Hand Embroidered Handkerchief',
+    'Customisable Embroidered Weddinghoop',
+    'Birthday hamper box',
+    'Birthday hamper box',
+        ];
+        
+       
+        function getCartKey() {
+            
+            const userData = JSON.parse(localStorage.getItem('user_data'));
+           
+            return userData && userData.id ? `homemade_cart_user_${userData.id}` : 'homemade_cart_guest';
+        }
+
+        function getCart() { 
+            const cartKey = getCartKey();
+            const cartData = localStorage.getItem(cartKey);
+            return cartData ? JSON.parse(cartData) : [];
+        }
+
+        function saveCart(cart) { 
+            const cartKey = getCartKey();
+            localStorage.setItem(cartKey, JSON.stringify(cart));
+            updateCartCount();
+        }
+        
+        function updateCartCount() {
+            const cart = getCart();
+            const countElement = document.getElementById('cart-count');
+            if (countElement) {
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                countElement.textContent = totalItems;
+            }
+        }
+        
+        function handleSignOut(e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to sign out?')) {
+                localStorage.removeItem('user_logged_in');
+                localStorage.removeItem('user_data');
+               
+            }
+        }
+
+        function checkLoginStatus() {
+            const loginLink = document.getElementById('login-link');
+            const userLoggedIn = localStorage.getItem('user_logged_in');
+            
+            if (loginLink && userLoggedIn === 'true') {
+                const userData = JSON.parse(localStorage.getItem('user_data')) ||
+ { email: 'User' };
+                const userName = userData.email ? userData.email.split('@')[0] : 'User'; 
+                loginLink.textContent = `Hello, ${userName} (Sign Out)`;
+                loginLink.href = '#';
+                loginLink.removeEventListener('click', handleSignOut); 
+                loginLink.addEventListener('click', handleSignOut);
+            } else if (loginLink) {
+                loginLink.textContent = 'Sign In / Register';
+                loginLink.href = 'login.html';
+            }
+        }
+
+       
+        function addItemToCart(product, quantity, imageSrc) {
+            let cart = getCart();
+            const existingItemIndex = cart.findIndex(item => item.id === product.id);
+            const discountedPrice = product.price * (1 - product.discount / 100);
+            if (quantity > 0) {
+                if (existingItemIndex > -1) {
+                   
+                    cart[existingItemIndex].quantity = quantity;
+                } else {
+                    
+                    cart.push({
+                        id: product.id,
+                        name: 
+ product.name,
+                        originalPrice: product.price,
+                        discountPercent: product.discount,
+                        currentPrice: parseFloat(discountedPrice.toFixed(2)),
+                        quantity: 
+ quantity,
+                        imageSrc: imageSrc 
+                    });
+                }
+            } else if (quantity === 0 && existingItemIndex > -1) {
+                
+                cart.splice(existingItemIndex, 1);
+            }
+            
+            
+            saveCart(cart);
+        }
+        
+        
+        const featuredSection = document.getElementById('featured-products');
+        if (featuredSection) {
+            featuredSection.addEventListener('click', (e) => {
+                const target = e.target;
+
+              
+                if (target.classList.contains('qty-btn')) {
+                    const action = target.dataset.action;
+   
+                     const inputId = target.dataset.target;
+                    const input = document.getElementById(inputId);
+                    let currentValue = parseInt(input.value);
+
+                    if (action === 'increment') {
+          
+                     
+                        input.value = Math.min(parseInt(input.max), currentValue + 1);
+                    } else if (action === 'decrement') {
+                       
+                        input.value = Math.max(0, currentValue - 1); 
+                    }
+        
+                 }
+            
+                else if (target.classList.contains('btn-add-to-cart')) {
+                    const button = target;
+                    const qtyInputId = button.dataset.qtyInput; 
+                    const qtyInput = document.getElementById(qtyInputId);
+                   
+                    const newQuantity = parseInt(qtyInput.value) ||
+ 0; 
+                    
+                    const productId = button.dataset.id; 
+                    
+                   
+                    const currentCart = getCart();
+                    const existingItem = currentCart.find(item => item.id === productId);
+                    const existingQuantity = existingItem ? existingItem.quantity : 0;
+                    
+                    const productCard = button.closest('.product-card');
+                    const imageElement = productCard.querySelector('img');
+
+                    const product = {
+                        id: productId,
+                        name: button.dataset.name,
+                        price: parseFloat(button.dataset.price),
+                  
+                        discount: parseInt(button.dataset.discount) || 0
+                    };
+                 
+                    const imageSrc = imageElement ?
+ imageElement.src : '';
+                    
+                  
+                    if (newQuantity !== existingQuantity) {
+                        addItemToCart(product, newQuantity, imageSrc);
+                      
+
+                        if (newQuantity > 0) {
+                            // Update/Add message
+                            alert(`${newQuantity} unit(s) of "${product.name}" added/updated in cart!`);
+                        } else {
+                            
+                            alert(`"${product.name}" removed from cart.`);
+                        }
+                    } else {
+                       
+                        alert(`Quantity for "${product.name}" is already ${newQuantity}.`);
+                    }
+                    
+                    
+                    const updatedCart = getCart();
+                    const updatedItem = updatedCart.find(item => item.id === productId);
+                    qtyInput.value = updatedItem ? updatedItem.quantity : 1;
+                }
+            });
+        }
+
+
+        
+        const searchInput = document.getElementById('search-input');
+        const suggestionsDiv = document.getElementById('search-suggestions');
+        const searchButton = document.getElementById('search-button');
+        const productCards = document.querySelectorAll('.product-card');
+        const noResults = document.getElementById('no-results-message');
+        function displaySuggestions() {
+            const query = searchInput.value.toLowerCase().trim();
+            suggestionsDiv.innerHTML = '';
+
+            if (query.length < 2) {
+                suggestionsDiv.style.display = 'none';
+                return;
+            }
+
+            const filteredProducts = allProducts.filter(productName => 
+                productName.toLowerCase().includes(query)
+            ).slice(0, 5);
+            if (filteredProducts.length > 0) {
+                filteredProducts.forEach(productName => {
+                    const suggestionItem = document.createElement('div');
+                    suggestionItem.className = 'suggestion-item';
+                    suggestionItem.textContent = productName;
+           
+                             
+                    suggestionItem.addEventListener('click', () => {
+                        searchInput.value = productName;
+                        suggestionsDiv.style.display = 'none';
+                
+                         filterProducts(productName);
+                    });
+                    suggestionsDiv.appendChild(suggestionItem);
+                });
+                suggestionsDiv.style.display = 'block';
+            } else {
+                suggestionsDiv.style.display = 'none';
+            }
+        }
+        
+        function filterProducts(query) {
+            const normalizedQuery = query.toLowerCase().trim();
+            let resultsFound = false;
+
+            productCards.forEach(card => {
+                const searchTerms = card.getAttribute('data-search-term') || card.querySelector('.product-name').textContent;
+                
+                if (searchTerms.toLowerCase().includes(normalizedQuery) || normalizedQuery === '') {
+                    card.style.display = 'block';
+             
+                       resultsFound = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            if (resultsFound || normalizedQuery === '') {
+                noResults.style.display = 'none';
+            } else {
+                noResults.style.display = 'block';
+            }
+            
+            suggestionsDiv.style.display = 'none';
+        }
+
+        searchInput.addEventListener('input', displaySuggestions);
+        searchButton.addEventListener('click', () => {
+            filterProducts(searchInput.value);
+        });
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault(); 
+                filterProducts(searchInput.value);
+            }
+        });
+        document.addEventListener('click', (e) => {
+            const searchContainer = document.querySelector('.search-container');
+            if (!searchContainer.contains(e.target)) {
+                suggestionsDiv.style.display = 'none';
+            }
+        });
+       
+        updateCartCount();
+        checkLoginStatus();
+    });
+</script>
+</body>
+</html>
