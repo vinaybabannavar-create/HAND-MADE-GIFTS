@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us & How to Order - HomeMadeGifts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #fafafa;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    .main-header {
+      background-color: #222;
+      color: #fff;
+      padding-bottom: 10px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      flex-wrap: wrap;
+    }
+
+    .shop-logo a {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #febd69;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .shop-logo a:hover {
+      color: #fff;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 8px;
+    }
+
+    .search-bar input {
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+      width: 250px;
+      outline: none;
+      font-size: 16px;
+    }
+
+    .search-bar button {
+      padding: 8px 10px;
+      border: none;
+      background-color: #febd69;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-size: 16px;
+    }
+
+    .search-bar button:hover {
+      background-color: #f9a43a;
+    }
+
+    .user-nav {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .user-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .user-nav a:hover {
+      color: #febd69;
+    }
+
+    .logout-link {
+      color: #fff;
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+  
+    .main-nav {
+      background-color: #333;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      padding: 10px 0;
+    }
+
+    .main-nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      background-color: #febd69;
+      color: #222;
+    }
+
+
+    .page-title {
+      color: #333;
+      text-align: center;
+      margin-top: 30px;
+      font-size: 2rem;
+    }
+
+    .intro-text {
+      color: #555;
+      text-align: center;
+      margin: 0 auto 20px;
+      max-width: 900px;
+      line-height: 1.6;
+      padding: 0 15px;
+    }
+
+    .vision-box {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 900px;
+      margin: 20px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .vision-box h2 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .order-step {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .order-step:hover {
+      transform: translateY(-5px);
+    }
+
+    .order-step .step-number {
+      font-weight: bold;
+      color: #ee0979;
+      font-size: 1.2rem;
+    }
+
+    .order-step h3 {
+      margin: 10px 0 8px;
+      color: #222;
+    }
+
+    .order-step p {
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .contact-cta {
+      text-align: center;
+      margin: 40px 0;
+      padding: 0 15px;
+    }
+
+    .btn-primary {
+      background-color: #febd69;
+      color: #222;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #f9a43a;
+    }
+
+    .main-footer {
+      background-color: #222;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+
+    
+    @media (max-width: 768px) {
+      .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .search-bar input {
+        width: 100%;
+      }
+
+      .page-title {
+        font-size: 1.6rem;
+      }
+
+      .vision-box, .intro-text {
+        padding: 10px;
+      }
+
+      .main-nav a {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="main-header">
+    <div class="header-top">
+      <div class="shop-logo">
+        <a href="index.html">HomeMadeGifts🛍️</a>
+      </div>
+
+      <div class="search-bar">
+        <input type="text" placeholder="Search for Gifts, Hampers, or Products...">
+        <button>🔍</button>
+      </div>
+
+      <nav class="user-nav">
+        <a href="#" id="user-email"></a>
+        <a href="#" class="logout-link" id="logout-link" style="display:none;">Logout</a>
+      </nav>
+    </div>
+
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About & How to Order</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="cart.html">Shopping Cart</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h1 class="page-title">Handcrafted Love: The HomeMadeGifts Story</h1>
+      <p class="intro-text">
+        Welcome to HomeMadeGifts, your destination for unique, handcrafted products and bespoke gift hampers.
+        We believe every gift should carry a touch of personal warmth and dedication.
+        Our products — from homemade snacks to elegant wedding hampers — are carefully curated and lovingly created,
+        ensuring quality and uniqueness in every item.
+      </p>
+
+      <div class="vision-box">
+        <h2>Our Vision</h2>
+        <p>
+          To celebrate the art of handmade craftsmanship by connecting talented local artisans with customers seeking meaningful, high-quality, and unique products for every special occasion.
+        </p>
+      </div>
+    </section>
+
+    <hr>
+
+    <section>
+      <h1 class="page-title">Simple Steps to Order Online</h1>
+      <p class="intro-text">
+        Ordering from HomeMadeGifts is easy and secure. Follow these steps to receive your perfect handmade product or gift hamper right at your doorstep.
+      </p>
+
+      <div class="step-grid">
+        <div class="order-step">
+          <span class="step-number">1.</span>
+          <h3>Explore & Select</h3>
+          <p>Browse our Home page to discover various categories like Gift Hampers, Marriage Gifts, and Homemade Treats. Click on any item to view full details, images, videos, price, and available discounts.</p>
+          <p style="color: red; font-weight: bold;">Remember to log in first so your cart and orders are saved to your account!</p>
+        </div>
+
+        <div class="order-step">
+          <span class="step-number">2.</span>
+          <h3>Add to Cart</h3>
+          <p>When you find an item you love, use the 'Add to Cart' button. Review your selections on the Cart page, where you can easily remove items (❌) or adjust quantities.</p>
+        </div>
+
+        <div class="order-step">
+          <span class="step-number">3.</span>
+          <h3>Secure Checkout</h3>
+          <p>Proceed to Checkout. If you are a first-time user, look out for special introductory offers! Provide your contact details and shipping address, including a map location if possible.</p>
+        </div>
+
+        <div class="order-step">
+          <span class="step-number">4.</span>
+          <h3>Choose Payment & Confirm</h3>
+          <p>Select your preferred method: Cash on Delivery (COD) or Online Payment. Once confirmed, your order details are instantly sent to our admin team via Gmail and WhatsApp for immediate processing.</p>
+        </div>
+
+        <div class="order-step">
+          <span class="step-number">5.</span>
+          <h3>Delivery & Enjoy!</h3>
+          <p>Our admin, <strong>Pragati Babannavar</strong>, will personally handle your order. You will receive updates via email or WhatsApp. Sit back, relax, and await your handcrafted package!</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-cta">
+      <p>Have a question or need a custom hamper? We’d love to hear from you!</p>
+      <a href="contact.html" class="btn-primary">Get in Touch</a>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <p>© 2025 HomeMadeGifts. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const emailDisplay = document.getElementById("user-email");
+      const logoutLink = document.getElementById("logout-link");
+
+      const userLoggedIn = localStorage.getItem('user_logged_in') === 'true';
+      const userData = JSON.parse(localStorage.getItem('user_data'));
+
+      if (userLoggedIn && userData && userData.email) {
+        const userName = userData.email.split('@')[0];
+        emailDisplay.textContent = `👋 Hi, ${userName}`;
+        emailDisplay.href = "dashboard.html";
+        logoutLink.style.display = "inline";
+      } else {
+        emailDisplay.textContent = "Sign In / Register";
+        emailDisplay.href = "login.html";
+        logoutLink.style.display = "none";
+      }
+
+      logoutLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        const userId = userData ? (userData.id || userData.email) : null;
+
+        localStorage.removeItem("user_data");
+        localStorage.removeItem("user_logged_in");
+        if (userId) {
+          const cartKey = `homemade_cart_user_${userId}`;
+          localStorage.removeItem(cartKey);
+        }
+        localStorage.removeItem("loggedInUser");
+        localStorage.removeItem("user_email");
+
+        alert("Logged out successfully!");
+        window.location.href = "login.html";
+      });
+    });
+  </script>
+</body>
+</html>

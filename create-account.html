@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account - HomeMadeGifts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+   
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #1f1f1f, #3a3a3a);
+      color: #fff;
+      animation: bgMove 14s ease-in-out infinite alternate;
+      padding: 20px;
+    }
+
+    @keyframes bgMove {
+      0% { background-size: 100% 100%; }
+      100% { background-size: 120% 120%; }
+    }
+
+    
+    .signup-box {
+      width: 100%;
+      max-width: 380px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      animation: fadeIn 0.9s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .signup-box h2 {
+      margin-bottom: 1rem;
+      font-weight: 600;
+      font-size: 1.6rem;
+      letter-spacing: 0.5px;
+    }
+
+   
+    label {
+      display: block;
+      text-align: left;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      margin-bottom: 0.3rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    input {
+      width: 100%;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      background: rgba(255,255,255,0.9);
+      color: #333;
+      font-size: 0.95rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    input:focus {
+      transform: scale(1.03);
+      box-shadow: 0 0 8px #ffb347;
+    }
+
+   
+    .btn-primary {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      margin-top: 1.3rem;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      background: #fff;
+      color: #e91e63;
+      transition: 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: #fbe4ec;
+      transform: scale(1.05);
+    }
+
+   
+    .footer-text {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .footer-text a {
+      color: #fff;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    .footer-text a:hover {
+      color: #f8b6c3;
+    }
+
+    
+    @media (max-width: 480px) {
+      .signup-box {
+        width: 90%;
+        padding: 1.6rem;
+      }
+
+      input, .btn-primary {
+        font-size: 0.95rem;
+      }
+
+      .btn-primary {
+        padding: 0.65rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="signup-box">
+    <h2>Create Your Account ✨</h2>
+
+    <form id="signup-form">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Create a password" required>
+
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" placeholder="Re-enter your password" required>
+
+      <button type="submit" class="btn-primary">Sign Up</button>
+    </form>
+
+    <p class="footer-text">
+      Already have an account?
+      <a href="login.html">Login here</a>
+    </p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('signup-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+        if (!email || !password || !confirmPassword) {
+          alert('⚠️ Please fill all fields.');
+          return;
+        }
+
+        if (password.length < 6) {
+          alert('⚠️ Password must be at least 6 characters long.');
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          alert('❌ Passwords do not match!');
+          return;
+        }
+
+        // Retrieve or create users array
+        const users = JSON.parse(localStorage.getItem('registered_users')) || [];
+        const exists = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+
+        if (exists) {
+          alert('⚠️ Account already exists! Please log in.');
+          window.location.href = 'login.html';
+          return;
+        }
+
+       
+        const newUser = {
+          email,
+          password,
+          registeredOn: new Date().toLocaleString(),
+          isNewUser: true
+        };
+        users.push(newUser);
+        localStorage.setItem('registered_users', JSON.stringify(users));
+
+       
+        const userIdentifier = email;
+        const cartKey = `homemade_cart_user_${userIdentifier}`;
+
+        localStorage.setItem('user_logged_in', 'true');
+        localStorage.setItem('user_data', JSON.stringify({
+          email,
+          id: userIdentifier,
+          isNewUser: true
+        }));
+
+        if (!localStorage.getItem(cartKey)) {
+          localStorage.setItem(cartKey, JSON.stringify([]));
+        }
+
+        alert(`🎉 Welcome, ${email.split('@')[0]}! Your account has been created.`);
+        window.location.href = 'index.html';
+      });
+    });
+  </script>
+</body>
+</html>
