@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Checkout - HomeMadeGifts</title>
+  <title>Checkout - HandMadeGifts</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -26,6 +27,11 @@
       background-color: var(--background-color);
       color: var(--text-color);
       line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    html {
+      overflow-x: hidden;
     }
 
     a {
@@ -37,6 +43,9 @@
     .main-header {
       background-color: #131921;
       color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .header-top {
@@ -200,13 +209,22 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
+      .main-header {
+        position: relative;
+      }
+
+      .container {
+        margin-top: 20px !important;
+      }
+
       .checkout-grid {
         grid-template-columns: 1fr;
       }
 
       .header-top {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        text-align: center;
         gap: 10px;
       }
     }
@@ -258,7 +276,6 @@
         <h3>3. Payment Method</h3>
         <div class="payment-options">
           <label><input type="radio" name="payment-mode" value="COD" checked /> Cash on Delivery (COD)</label>
-          <label><input type="radio" name="payment-mode" value="Online" /> Online Payment (Simulated)</label>
         </div>
 
         <button type="submit" class="btn-primary">Place Order & Send Email</button>
@@ -349,7 +366,7 @@
       updateCartCount();
       checkLoginStatus();
 
-    
+
       let subtotal = 0,
         discount = 0;
       cart.forEach((i) => {
@@ -376,7 +393,7 @@
       document.getElementById("discount-checkout").textContent = discount.toFixed(2);
       document.getElementById("total-checkout").textContent = total.toFixed(2);
 
-     
+
       document.getElementById("order-form").addEventListener("submit", (e) => {
         e.preventDefault();
         const name = document.getElementById("name").value.trim();
@@ -409,7 +426,7 @@ ${location || "Location not shared"}
         const body = encodeURIComponent(emailBody);
         window.open(`mailto:${ADMIN_EMAIL}?subject=${subject}&body=${body}`, "_blank");
 
-       
+
         const orders = JSON.parse(localStorage.getItem("homemade_orders")) || [];
         orders.push({
           id: Date.now(),
@@ -422,7 +439,7 @@ ${location || "Location not shared"}
         });
         localStorage.setItem("homemade_orders", JSON.stringify(orders));
 
-        
+
         localStorage.removeItem(getCartKey());
         alert("✅ Order placed successfully!");
         window.location.href = "dashboard.html";
@@ -430,4 +447,5 @@ ${location || "Location not shared"}
     });
   </script>
 </body>
+
 </html>

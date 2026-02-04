@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,12 +29,20 @@
       background-color: var(--background-color);
       color: var(--text-color);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    
+    html {
+      overflow-x: hidden;
+    }
+
+
     .main-header {
       background-color: #131921;
       color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .header-top {
@@ -99,7 +108,7 @@
       font-weight: 600;
     }
 
-    
+
     .container {
       max-width: 1100px;
       margin: 30px auto;
@@ -200,11 +209,21 @@
       margin-top: 40px;
       font-size: 0.9rem;
     }
- /* ===== RESPONSIVE ===== */
+
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
+      .main-header {
+        position: relative;
+      }
+
+      .container {
+        margin-top: 20px !important;
+      }
+
       .header-top {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        text-align: center;
         gap: 10px;
       }
 
@@ -214,7 +233,13 @@
         gap: 5px;
       }
 
+      .main-nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
       .main-nav a {
+        text-align: center;
         font-size: 0.9rem;
         padding: 6px 10px;
       }
@@ -229,7 +254,7 @@
 <body>
   <header class="main-header">
     <div class="header-top">
-      <a href="index.html" class="shop-logo">HomeMadeGifts🛍️</a>
+      <a href="index.html" class="shop-logo">HandMadeGifts🛍️</a>
       <nav class="user-nav">
         <a href="login.html" id="login-link">Sign In / Register</a>
         <a href="cart.html" class="cart-icon">🛒 <span id="cart-count" class="badge">0</span></a>
@@ -265,7 +290,7 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      
+
       function getUserData() {
         return JSON.parse(localStorage.getItem("user_data"));
       }
@@ -288,7 +313,7 @@
         document.getElementById("cart-count").textContent = totalItems;
       }
 
-      
+
       function checkLoginStatus() {
         const userLoggedIn = localStorage.getItem("user_logged_in") === "true";
         const user = getUserData();
@@ -324,7 +349,7 @@
         }
       }
 
-     
+
       function renderOrders(userId) {
         const ordersList = document.getElementById("orders-list");
         const emptyMessage = document.getElementById("empty-orders-message");
@@ -364,11 +389,12 @@
         }).join("");
       }
 
-      
+
       updateCartCount();
       const userId = checkLoginStatus();
       if (userId) renderOrders(userId);
     });
   </script>
 </body>
+
 </html>

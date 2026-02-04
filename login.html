@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-   
     * {
       margin: 0;
       padding: 0;
@@ -22,16 +22,21 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
-      overflow: hidden;
+      overflow-x: hidden;
       animation: bgMove 12s ease-in-out infinite alternate;
     }
 
     @keyframes bgMove {
-      0% { background-size: 100% 100%; }
-      100% { background-size: 120% 120%; }
+      0% {
+        background-size: 100% 100%;
+      }
+
+      100% {
+        background-size: 120% 120%;
+      }
     }
 
-   
+
     .login-box {
       width: 100%;
       max-width: 380px;
@@ -47,8 +52,15 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     .login-box h2 {
@@ -57,14 +69,14 @@
       letter-spacing: 1px;
     }
 
-    
+
     label {
       display: block;
       text-align: left;
       font-size: 0.9rem;
       margin-top: 1rem;
       margin-bottom: 0.3rem;
-      color: rgba(255,255,255,0.9);
+      color: rgba(255, 255, 255, 0.9);
     }
 
     input {
@@ -73,7 +85,7 @@
       border: none;
       border-radius: 8px;
       outline: none;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255, 255, 255, 0.9);
       color: #333;
       font-size: 0.95rem;
       transition: box-shadow 0.2s, transform 0.2s;
@@ -84,8 +96,9 @@
       box-shadow: 0 0 8px #ffb347;
     }
 
-   
-    .btn-primary, .btn-secondary {
+
+    .btn-primary,
+    .btn-secondary {
       width: 100%;
       padding: 0.75rem;
       border: none;
@@ -100,8 +113,9 @@
     .btn-primary {
       background: #fff;
       color: #e91e63;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
+
     .btn-primary:hover {
       background: #fbe4ec;
       transform: scale(1.05);
@@ -112,13 +126,14 @@
       border: 1px solid #fff;
       color: #fff;
     }
+
     .btn-secondary:hover {
       background: #fff;
       color: #e91e63;
       transform: scale(1.05);
     }
 
-   
+
     .separator {
       margin: 1.5rem 0;
       font-size: 0.85rem;
@@ -133,32 +148,40 @@
       position: absolute;
       width: 35%;
       height: 1px;
-      background: rgba(255,255,255,0.4);
+      background: rgba(255, 255, 255, 0.4);
       top: 50%;
       transform: translateY(-50%);
     }
 
-    .separator span::before { left: 0; }
-    .separator span::after { right: 0; }
+    .separator span::before {
+      left: 0;
+    }
+
+    .separator span::after {
+      right: 0;
+    }
 
     .footer-text {
       margin-top: 1rem;
       font-size: 0.8rem;
-      color: rgba(255,255,255,0.75);
+      color: rgba(255, 255, 255, 0.75);
     }
 
-    
+
     @media (max-width: 480px) {
       .login-box {
         width: 90%;
         padding: 1.6rem;
       }
 
-      input, .btn-primary, .btn-secondary {
+      input,
+      .btn-primary,
+      .btn-secondary {
         font-size: 0.95rem;
       }
 
-      .btn-primary, .btn-secondary {
+      .btn-primary,
+      .btn-secondary {
         padding: 0.65rem;
       }
     }
@@ -179,15 +202,15 @@
       <button type="submit" class="btn-primary">Login</button>
     </form>
 
-    <p class="separator"><span>New to HomeMadeGifts?</span></p>
+    <p class="separator"><span>New to HandMadeGifts?</span></p>
     <button class="btn-secondary" onclick="window.location.href='create-account.html'">Create your account</button>
 
-    <p class="footer-text">© 2025 HomeMadeGifts | All Rights Reserved</p>
+    <p class="footer-text">© 2025 HandMadeGifts | All Rights Reserved</p>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      
+
       if (localStorage.getItem('user_logged_in') === 'true') {
         window.location.href = 'index.html';
         return;
@@ -214,11 +237,11 @@
           return;
         }
 
-        
-        const userIdentifier = user.email; 
+
+        const userIdentifier = user.email;
         const cartKey = `homemade_cart_user_${userIdentifier}`;
 
-       
+
         localStorage.setItem('user_logged_in', 'true');
         localStorage.setItem('user_data', JSON.stringify({
           email: user.email,
@@ -226,11 +249,11 @@
           isNewUser: user.isNewUser || 'false'
         }));
 
-       
+
         localStorage.removeItem('user_email');
         localStorage.removeItem('loggedInUser');
 
-        
+
         if (!localStorage.getItem(cartKey)) {
           localStorage.setItem(cartKey, JSON.stringify([]));
         }
@@ -241,4 +264,5 @@
     });
   </script>
 </body>
+
 </html>

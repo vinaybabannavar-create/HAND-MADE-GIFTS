@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Us - Hand Made Gifts</title>
+  <title>Contact Us - HandMadeGifts</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
@@ -12,12 +13,20 @@
       background-color: #fafafa;
       margin: 0;
       padding: 0;
+      overflow-x: hidden;
+    }
+
+    html {
+      overflow-x: hidden;
     }
 
     .main-header {
       background-color: #222;
       color: #fff;
       padding-bottom: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .header-top {
@@ -138,7 +147,7 @@
       background: #fff;
       border-radius: 10px;
       padding: 25px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .contact-form-section h2,
@@ -223,7 +232,7 @@
 
     .insta-button:hover {
       transform: scale(1.05);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
 
     .main-footer {
@@ -237,6 +246,10 @@
 
 
     @media (max-width: 768px) {
+      .main-header {
+        position: relative;
+      }
+
       .contact-grid {
         grid-template-columns: 1fr;
       }
@@ -247,11 +260,13 @@
 
       .container {
         padding: 10px;
+        margin-top: 20px;
       }
 
       .header-top {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        text-align: center;
         gap: 10px;
       }
 
@@ -260,11 +275,13 @@
       }
 
       .main-nav {
-        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: stretch;
         gap: 10px;
       }
 
       .main-nav a {
+        text-align: center;
         padding: 6px 10px;
         font-size: 0.9rem;
       }
@@ -301,11 +318,12 @@
   <main class="container">
     <h1 class="page-title">We're Here to Help!</h1>
     <p class="intro-text">
-      Have questions about an order, a custom hamper request, or need support? Reach out to us through the form below or using our direct contact details.
+      Have questions about an order, a custom hamper request, or need support? Reach out to us through the form below or
+      using our direct contact details.
     </p>
 
     <div class="contact-grid">
-   
+
       <section class="contact-form-section">
         <h2>Send Us a Message</h2>
         <form id="contact-form" class="simple-form">
@@ -331,7 +349,8 @@
 
         <div class="contact-card">
           <h3>Customer Service</h3>
-          <p>📧 <strong>Email:</strong> <a href="mailto:littlehoopsandhampers@gmail.com">littlehoopsandhampers@gmail.com</a></p>
+          <p>📧 <strong>Email:</strong> <a
+              href="mailto:littlehoopsandhampers@gmail.com">littlehoopsandhampers@gmail.com</a></p>
           <p>📱 <strong>Phone/WhatsApp:</strong> +91 9980964155</p>
           <p>🕑 <strong>Hours:</strong> Any Time Order</p>
         </div>
@@ -360,8 +379,8 @@
   </footer>
 
   <script>
-   
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
+
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
       e.preventDefault();
       const name = document.getElementById('contact-name').value;
       const email = document.getElementById('contact-email').value;
@@ -388,7 +407,7 @@
         loginLink.style.display = 'inline';
       }
 
-   
+
       document.addEventListener('click', (e) => {
         if (e.target.id === 'logout-btn') {
           localStorage.removeItem('user_data');
@@ -397,7 +416,7 @@
             const cartKey = `homemade_cart_user_${userId}`;
             localStorage.removeItem(cartKey);
           }
-          localStorage.removeItem('loggedInUser'); 
+          localStorage.removeItem('loggedInUser');
           localStorage.removeItem('user_email');
           alert('You have been logged out successfully!');
           window.location.href = "login.html";
@@ -407,4 +426,5 @@
   </script>
 
 </body>
+
 </html>

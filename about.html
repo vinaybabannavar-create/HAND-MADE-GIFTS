@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us & How to Order - HomeMadeGifts</title>
+  <title>About Us & How to Order - HandMade Gifts</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
@@ -12,6 +13,11 @@
       background-color: #fafafa;
       margin: 0;
       padding: 0;
+      overflow-x: hidden;
+    }
+
+    html {
+      overflow-x: hidden;
     }
 
 
@@ -19,6 +25,9 @@
       background-color: #222;
       color: #fff;
       padding-bottom: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .header-top {
@@ -95,7 +104,7 @@
       font-weight: 500;
     }
 
-  
+
     .main-nav {
       background-color: #333;
       display: flex;
@@ -142,7 +151,7 @@
       padding: 20px;
       max-width: 900px;
       margin: 20px auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .vision-box h2 {
@@ -163,7 +172,7 @@
       background: #fff;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
     }
 
@@ -216,11 +225,16 @@
       font-size: 0.9rem;
     }
 
-    
+
     @media (max-width: 768px) {
+      .main-header {
+        position: relative;
+      }
+
       .header-top {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        text-align: center;
         gap: 10px;
       }
 
@@ -230,13 +244,21 @@
 
       .page-title {
         font-size: 1.6rem;
+        margin-top: 20px;
       }
 
-      .vision-box, .intro-text {
+      .vision-box,
+      .intro-text {
         padding: 10px;
       }
 
+      .main-nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
       .main-nav a {
+        text-align: center;
         font-size: 0.9rem;
         padding: 6px 10px;
       }
@@ -248,7 +270,7 @@
   <header class="main-header">
     <div class="header-top">
       <div class="shop-logo">
-        <a href="index.html">HomeMadeGifts🛍️</a>
+        <a href="index.html">HandMadeGifts🛍️</a>
       </div>
 
       <div class="search-bar">
@@ -284,7 +306,8 @@
       <div class="vision-box">
         <h2>Our Vision</h2>
         <p>
-          To celebrate the art of handmade craftsmanship by connecting talented local artisans with customers seeking meaningful, high-quality, and unique products for every special occasion.
+          To celebrate the art of handmade craftsmanship by connecting talented local artisans with customers seeking
+          meaningful, high-quality, and unique products for every special occasion.
         </p>
       </div>
     </section>
@@ -294,39 +317,46 @@
     <section>
       <h1 class="page-title">Simple Steps to Order Online</h1>
       <p class="intro-text">
-        Ordering from HomeMadeGifts is easy and secure. Follow these steps to receive your perfect handmade product or gift hamper right at your doorstep.
+        Ordering from HomeMadeGifts is easy and secure. Follow these steps to receive your perfect handmade product or
+        gift hamper right at your doorstep.
       </p>
 
       <div class="step-grid">
         <div class="order-step">
           <span class="step-number">1.</span>
           <h3>Explore & Select</h3>
-          <p>Browse our Home page to discover various categories like Gift Hampers, Marriage Gifts, and Homemade Treats. Click on any item to view full details, images, videos, price, and available discounts.</p>
-          <p style="color: red; font-weight: bold;">Remember to log in first so your cart and orders are saved to your account!</p>
+          <p>Browse our Home page to discover various categories like Gift Hampers, Marriage Gifts, and Homemade Treats.
+            Click on any item to view full details, images, videos, price, and available discounts.</p>
+          <p style="color: red; font-weight: bold;">Remember to log in first so your cart and orders are saved to your
+            account!</p>
         </div>
 
         <div class="order-step">
           <span class="step-number">2.</span>
           <h3>Add to Cart</h3>
-          <p>When you find an item you love, use the 'Add to Cart' button. Review your selections on the Cart page, where you can easily remove items (❌) or adjust quantities.</p>
+          <p>When you find an item you love, use the 'Add to Cart' button. Review your selections on the Cart page,
+            where you can easily remove items (❌) or adjust quantities.</p>
         </div>
 
         <div class="order-step">
           <span class="step-number">3.</span>
           <h3>Secure Checkout</h3>
-          <p>Proceed to Checkout. If you are a first-time user, look out for special introductory offers! Provide your contact details and shipping address, including a map location if possible.</p>
+          <p>Proceed to Checkout. If you are a first-time user, look out for special introductory offers! Provide your
+            contact details and shipping address, including a map location if possible.</p>
         </div>
 
         <div class="order-step">
           <span class="step-number">4.</span>
           <h3>Choose Payment & Confirm</h3>
-          <p>Select your preferred method: Cash on Delivery (COD) or Online Payment. Once confirmed, your order details are instantly sent to our admin team via Gmail and WhatsApp for immediate processing.</p>
+          <p>Select your preferred method: Cash on Delivery (COD) or Online Payment. Once confirmed, your order details
+            are instantly sent to our admin team via Gmail and WhatsApp for immediate processing.</p>
         </div>
 
         <div class="order-step">
           <span class="step-number">5.</span>
           <h3>Delivery & Enjoy!</h3>
-          <p>Our admin, <strong>Pragati Babannavar</strong>, will personally handle your order. You will receive updates via email or WhatsApp. Sit back, relax, and await your handcrafted package!</p>
+          <p>Our admin, <strong>Pragati Babannavar</strong>, will personally handle your order. You will receive updates
+            via email or WhatsApp. Sit back, relax, and await your handcrafted package!</p>
         </div>
       </div>
     </section>
@@ -379,4 +409,5 @@
     });
   </script>
 </body>
+
 </html>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Create Account - HomeMadeGifts</title>
+  <title>Create Account - HandMadeGifts</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-   
     * {
       margin: 0;
       padding: 0;
@@ -27,11 +27,16 @@
     }
 
     @keyframes bgMove {
-      0% { background-size: 100% 100%; }
-      100% { background-size: 120% 120%; }
+      0% {
+        background-size: 100% 100%;
+      }
+
+      100% {
+        background-size: 120% 120%;
+      }
     }
 
-    
+
     .signup-box {
       width: 100%;
       max-width: 380px;
@@ -46,8 +51,15 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     .signup-box h2 {
@@ -57,14 +69,14 @@
       letter-spacing: 0.5px;
     }
 
-   
+
     label {
       display: block;
       text-align: left;
       font-size: 0.9rem;
       margin-top: 1rem;
       margin-bottom: 0.3rem;
-      color: rgba(255,255,255,0.9);
+      color: rgba(255, 255, 255, 0.9);
     }
 
     input {
@@ -73,7 +85,7 @@
       border: none;
       border-radius: 8px;
       outline: none;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255, 255, 255, 0.9);
       color: #333;
       font-size: 0.95rem;
       transition: box-shadow 0.2s, transform 0.2s;
@@ -84,7 +96,7 @@
       box-shadow: 0 0 8px #ffb347;
     }
 
-   
+
     .btn-primary {
       width: 100%;
       padding: 0.75rem;
@@ -104,11 +116,11 @@
       transform: scale(1.05);
     }
 
-   
+
     .footer-text {
       margin-top: 1rem;
       font-size: 0.85rem;
-      color: rgba(255,255,255,0.8);
+      color: rgba(255, 255, 255, 0.8);
     }
 
     .footer-text a {
@@ -121,14 +133,15 @@
       color: #f8b6c3;
     }
 
-    
+
     @media (max-width: 480px) {
       .signup-box {
         width: 90%;
         padding: 1.6rem;
       }
 
-      input, .btn-primary {
+      input,
+      .btn-primary {
         font-size: 0.95rem;
       }
 
@@ -196,7 +209,7 @@
           return;
         }
 
-       
+
         const newUser = {
           email,
           password,
@@ -206,7 +219,7 @@
         users.push(newUser);
         localStorage.setItem('registered_users', JSON.stringify(users));
 
-       
+
         const userIdentifier = email;
         const cartKey = `homemade_cart_user_${userIdentifier}`;
 
@@ -227,4 +240,5 @@
     });
   </script>
 </body>
+
 </html>

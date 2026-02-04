@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,6 +28,11 @@
       background-color: var(--background-color);
       color: var(--text-color);
       line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    html {
+      overflow-x: hidden;
     }
 
     a {
@@ -38,6 +44,9 @@
     .main-header {
       background-color: #131921;
       color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .header-top {
@@ -197,7 +206,7 @@
       font-size: 0.9rem;
     }
 
-    
+
     .cart-summary h3 {
       margin-bottom: 15px;
       border-bottom: 1px solid #eee;
@@ -256,8 +265,16 @@
       font-size: 0.9rem;
     }
 
-    
+
     @media (max-width: 768px) {
+      .main-header {
+        position: relative;
+      }
+
+      .container {
+        margin-top: 20px !important;
+      }
+
       .cart-content {
         flex-direction: column;
       }
@@ -268,11 +285,18 @@
 
       .header-top {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        text-align: center;
         gap: 10px;
       }
 
+      .main-nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
       .main-nav a {
+        text-align: center;
         font-size: 0.9rem;
         padding: 6px 10px;
       }
@@ -335,7 +359,7 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      
+
       function getUser() {
         return JSON.parse(localStorage.getItem("user_data"));
       }
@@ -387,7 +411,7 @@
         }
       }
 
-     
+
       function updateItemQuantity(id, quantity) {
         let cart = getCart();
         const index = cart.findIndex(i => i.id === id);
@@ -475,4 +499,5 @@
     });
   </script>
 </body>
+
 </html>
