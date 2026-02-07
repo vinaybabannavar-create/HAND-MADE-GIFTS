@@ -6,282 +6,266 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>User Dashboard - HomeMadeGifts</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/premium.css">
 
   <style>
-    :root {
-      --primary-color: #febd69;
-      --secondary-color: #232f3e;
-      --accent-color: #007185;
-      --background-color: #f7f7f7;
-      --text-color: #1a1a1a;
-      --border-color: #e0e0e0;
-      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    /* Dashboard Specific Styles */
+    .dashboard-container {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 30px;
+      margin-top: 40px !important;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    .dashboard-sidebar {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 30px;
+      height: fit-content;
+      box-shadow: var(--shadow);
+      text-align: center;
     }
 
-    body {
-      font-family: "Roboto", sans-serif;
-      background-color: var(--background-color);
-      color: var(--text-color);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    html {
-      overflow-x: hidden;
-    }
-
-
-    .main-header {
-      background-color: #131921;
-      color: white;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      flex-wrap: wrap;
-    }
-
-    .shop-logo {
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--primary-color);
-      text-decoration: none;
-    }
-
-    .user-nav {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .user-nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      position: relative;
-    }
-
-    .badge {
-      position: absolute;
-      top: -8px;
-      right: -10px;
-      background-color: #f08804;
-      color: white;
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
       border-radius: 50%;
-      font-size: 0.75rem;
-      padding: 2px 6px;
-    }
-
-    .main-nav {
-      background-color: var(--secondary-color);
+      margin: 0 auto 20px;
       display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      padding: 10px 0;
-    }
-
-    .main-nav a {
-      color: white;
-      text-decoration: none;
-      padding: 8px 15px;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
-
-    .main-nav a:hover,
-    .main-nav a.active {
-      background-color: var(--primary-color);
-      color: var(--secondary-color);
-      font-weight: 600;
-    }
-
-
-    .container {
-      max-width: 1100px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
-
-    .dashboard-header {
-      display: flex;
-      justify-content: space-between;
       align-items: center;
-      border-bottom: 2px solid var(--border-color);
-      padding-bottom: 10px;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .user-info h2 {
+      font-size: 1.5rem;
+      color: var(--secondary);
+      margin-bottom: 5px;
+    }
+
+    .user-info p {
+      color: #777;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+    }
+
+    .dashboard-menu {
+      list-style: none;
+      text-align: left;
+      margin-top: 30px;
+    }
+
+    .dashboard-menu li {
+      margin-bottom: 10px;
+    }
+
+    .dashboard-menu button {
+      width: 100%;
+      text-align: left;
+      padding: 12px 20px;
+      background: transparent;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      color: var(--secondary);
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dashboard-menu button:hover,
+    .dashboard-menu button.active {
+      background: linear-gradient(90deg, var(--bg-light) 0%, white 100%);
+      color: var(--primary);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .dashboard-content {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+      min-height: 500px;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      color: var(--secondary);
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #eee;
+    }
+
+    /* Profile Details Form */
+    .profile-details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .info-group {
       margin-bottom: 20px;
     }
 
-    .dashboard-header h1 {
-      font-size: 1.6rem;
-      color: var(--secondary-color);
+    .info-group label {
+      display: block;
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 8px;
     }
 
-    .orders-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    .info-value {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #333;
+      padding: 12px 15px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+      border: 1px solid #eee;
     }
 
+    /* Orders Styles */
     .order-card {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: var(--shadow);
+      background: white;
+      border: 1px solid #eee;
+      border-radius: 15px;
       padding: 20px;
-      border-left: 5px solid var(--accent-color);
-      transition: transform 0.2s;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
     }
 
     .order-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     }
 
     .order-header {
       display: flex;
       justify-content: space-between;
-      border-bottom: 1px dashed var(--border-color);
+      border-bottom: 1px dashed #ddd;
       padding-bottom: 10px;
       margin-bottom: 10px;
-      font-weight: 600;
-      color: #333;
     }
 
-    .order-header .total-amount {
-      color: #b12704;
-    }
-
-    .order-details p {
-      margin-bottom: 5px;
-      font-size: 0.95rem;
-      color: #444;
-    }
-
-    .item-list {
-      list-style: none;
-      padding: 0;
-      margin-top: 10px;
-      border-top: 1px solid #eee;
-      padding-top: 10px;
-    }
-
-    .item-list li {
-      font-size: 0.85rem;
-      padding: 2px 0;
-      color: #555;
-    }
-
-    .empty-orders-message {
-      background: white;
-      border-radius: 8px;
-      text-align: center;
-      padding: 50px 20px;
-      font-size: 1.1rem;
-      color: #555;
-      box-shadow: var(--shadow);
-    }
-
-    .empty-orders-message a {
-      display: inline-block;
-      margin-top: 10px;
-      text-decoration: none;
-      color: var(--accent-color);
+    .status-badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
       font-weight: 600;
     }
 
-    .main-footer {
-      background-color: #222;
-      color: #fff;
-      text-align: center;
-      padding: 15px;
-      margin-top: 40px;
-      font-size: 0.9rem;
+    .status-confirmed {
+      background: #e8f5e9;
+      color: #2e7d32;
     }
 
-    /* ===== RESPONSIVE ===== */
+    .status-pending {
+      background: #fff3e0;
+      color: #ef6c00;
+    }
+
     @media (max-width: 768px) {
-      .main-header {
-        position: relative;
-      }
-
-      .container {
-        margin-top: 20px !important;
-      }
-
-      .header-top {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 10px;
-      }
-
-      .dashboard-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
-      }
-
-      .main-nav {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .main-nav a {
-        text-align: center;
-        font-size: 0.9rem;
-        padding: 6px 10px;
-      }
-
-      .dashboard-header h1 {
-        font-size: 1.3rem;
+      .dashboard-container {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 
 <body>
-  <header class="main-header">
-    <div class="header-top">
-      <a href="index.html" class="shop-logo">HandMadeGifts🛍️</a>
-      <nav class="user-nav">
-        <a href="login.html" id="login-link">Sign In / Register</a>
-        <a href="cart.html" class="cart-icon">🛒 <span id="cart-count" class="badge">0</span></a>
-      </nav>
-    </div>
+  <!-- Header injected by universal-header.js -->
 
-    <nav class="main-nav">
-      <a href="index.html">Home</a>
-      <a href="about.html">About & How to Order</a>
-      <a href="contact.html">Contact Us</a>
-      <a href="dashboard.html" class="active">Dashboard</a>
-      <a href="cart.html">Shopping Cart</a>
-    </nav>
-  </header>
+  <main class="container dashboard-container animate-fade">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <div class="profile-avatar">👤</div>
+      <div class="user-info">
+        <h2 id="sidebar-name">Loading...</h2>
+        <p id="sidebar-email">...</p>
+      </div>
+      <ul class="dashboard-menu">
+        <li><button class="active" onclick="switchTab('profile')">👤 My Profile</button></li>
+        <li><button onclick="switchTab('orders')">📦 My Orders</button></li>
+        <li><button onclick="switchTab('cart')">🛒 Shopping Cart</button></li>
+        <li><button onclick="logout()">🚪 Logout</button></li>
+      </ul>
+    </aside>
 
-  <main class="container">
-    <div class="dashboard-header">
-      <h1>Your Order History</h1>
-      <p id="welcome-message"></p>
-    </div>
+    <!-- Content Area -->
+    <section class="dashboard-content">
 
-    <div id="orders-list" class="orders-grid"></div>
+      <!-- Profile Tab -->
+      <div id="tab-profile" class="dashboard-tab">
+        <h2 class="section-title">My Profile</h2>
 
-    <div id="empty-orders-message" class="empty-orders-message" style="display: none;">
-      <p>You haven’t placed any orders yet.</p>
-      <a href="index.html">Start Shopping →</a>
-    </div>
+        <!-- View Mode -->
+        <div id="profile-view">
+          <div class="profile-details-grid">
+            <div class="info-group">
+              <label>Full Name</label>
+              <div class="info-value" id="profile-name">John Doe</div>
+            </div>
+            <div class="info-group">
+              <label>Email Address</label>
+              <div class="info-value" id="profile-email">john@example.com</div>
+            </div>
+            <div class="info-group">
+              <label>Phone Number</label>
+              <div class="info-value" id="profile-phone">Not set</div>
+            </div>
+            <div class="info-group">
+              <label>Member Since</label>
+              <div class="info-value" id="profile-date">Feb 2025</div>
+            </div>
+          </div>
+          <button class="btn-primary" style="margin-top:20px;" onclick="enableEditMode()">✏️ Edit Profile</button>
+        </div>
+
+        <!-- Edit Mode -->
+        <div id="profile-edit" style="display: none;">
+          <form id="edit-profile-form" onsubmit="saveProfile(event)">
+            <div class="profile-details-grid">
+              <div class="info-group">
+                <label for="edit-name">Full Name</label>
+                <input type="text" id="edit-name" class="info-value" style="width:100%; display:block;" required>
+              </div>
+              <div class="info-group">
+                <label for="edit-email">Email Address</label>
+                <input type="email" id="edit-email" class="info-value" style="width:100%; display:block;" required>
+              </div>
+              <div class="info-group">
+                <label for="edit-phone">Phone Number</label>
+                <input type="tel" id="edit-phone" class="info-value" style="width:100%; display:block;"
+                  placeholder="Enter phone number">
+              </div>
+            </div>
+            <div style="margin-top:20px; display:flex; gap:10px;">
+              <button type="submit" class="btn-primary">💾 Save Changes</button>
+              <button type="button" class="btn-secondary" onclick="cancelEditMode()">❌ Cancel</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Orders Tab -->
+      <div id="tab-orders" class="dashboard-tab" style="display:none;">
+        <h2 class="section-title">Order History</h2>
+        <div id="orders-list"></div>
+        <div id="empty-orders-message" class="empty-orders-message" style="display: none;">
+          <p>You haven’t placed any orders yet.</p>
+          <a href="index.html">Start Shopping →</a>
+        </div>
+      </div>
+
+    </section>
   </main>
 
   <footer class="main-footer">
@@ -291,6 +275,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
 
+      // --- Helper Functions ---
       function getUserData() {
         return JSON.parse(localStorage.getItem("user_data"));
       }
@@ -300,56 +285,77 @@
         return user ? (user.id || user.email) : null;
       }
 
-      function getCart() {
-        const userId = getUserId();
-        const cartKey = userId ? `homemade_cart_user_${userId}` : "homemade_cart_guest";
-        const cartData = localStorage.getItem(cartKey);
-        return cartData ? JSON.parse(cartData) : [];
-      }
-
-      function updateCartCount() {
-        const cart = getCart();
-        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
-        document.getElementById("cart-count").textContent = totalItems;
-      }
-
-
-      function checkLoginStatus() {
-        const userLoggedIn = localStorage.getItem("user_logged_in") === "true";
+      // --- Init Dashboard ---
+      function initDashboard() {
         const user = getUserData();
-
-        const loginLink = document.getElementById("login-link");
-        const welcomeMsg = document.getElementById("welcome-message");
-
-        if (!userLoggedIn || !user) {
-          alert("Please log in to view your dashboard.");
+        if (!user) {
           window.location.href = "login.html";
-          return null;
+          return;
         }
 
-        const userName = user.email ? user.email.split("@")[0] : "User";
-        loginLink.textContent = `Hello, ${userName} (Logout)`;
-        loginLink.href = "#";
-        loginLink.addEventListener("click", handleLogout);
-        welcomeMsg.textContent = `Welcome, ${userName}!`;
-        return user.id || user.email;
+        updateProfileDisplay(user);
+
+        // Render Orders
+        renderOrders(getUserId());
       }
 
-      function handleLogout(e) {
-        e.preventDefault();
-        if (confirm("Are you sure you want to logout?")) {
-          const userId = getUserId();
-          localStorage.removeItem("user_logged_in");
-          localStorage.removeItem("user_data");
-          if (userId) {
-            localStorage.removeItem(`homemade_cart_user_${userId}`);
-          }
-          alert("You have been logged out successfully.");
-          window.location.href = "login.html";
+      function updateProfileDisplay(user) {
+        document.getElementById('sidebar-name').textContent = user.name || "User";
+        document.getElementById('sidebar-email').textContent = user.email || "";
+        document.getElementById('profile-name').textContent = user.name || "User";
+        document.getElementById('profile-email').textContent = user.email || "";
+        document.getElementById('profile-phone').textContent = user.phone || "Not set";
+        document.getElementById('profile-date').textContent = user.registeredOn || "Feb 2025";
+      }
+
+      // --- Edit Profile Functions ---
+      window.enableEditMode = function () {
+        const user = getUserData();
+        document.getElementById('edit-name').value = user.name || "";
+        document.getElementById('edit-email').value = user.email || "";
+        document.getElementById('edit-phone').value = user.phone || "";
+
+        document.getElementById('profile-view').style.display = 'none';
+        document.getElementById('profile-edit').style.display = 'block';
+      };
+
+      window.cancelEditMode = function () {
+        document.getElementById('profile-edit').style.display = 'none';
+        document.getElementById('profile-view').style.display = 'block';
+      };
+
+      window.saveProfile = function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById('edit-name').value;
+        const email = document.getElementById('edit-email').value;
+        const phone = document.getElementById('edit-phone').value;
+
+        // Validation could go here
+
+        let user = getUserData();
+        user.name = name;
+        user.email = email;
+        user.phone = phone;
+
+        // Save to localStorage
+        localStorage.setItem("user_data", JSON.stringify(user));
+
+        // Optionally update the 'registered_users' array if used
+        let users = JSON.parse(localStorage.getItem('registered_users')) || [];
+        const index = users.findIndex(u => u.email === user.email || u.id === user.id); // Simple match
+        if (index > -1) {
+          users[index] = { ...users[index], ...user };
+          localStorage.setItem('registered_users', JSON.stringify(users));
         }
-      }
 
+        updateProfileDisplay(user);
 
+        alert("✅ Profile updated successfully!");
+        cancelEditMode();
+      };
+
+      // --- Render Orders ---
       function renderOrders(userId) {
         const ordersList = document.getElementById("orders-list");
         const emptyMessage = document.getElementById("empty-orders-message");
@@ -364,35 +370,71 @@
         }
 
         emptyMessage.style.display = "none";
-        ordersList.style.display = "flex";
+        ordersList.style.display = "block";
 
         ordersList.innerHTML = userOrders.map(order => {
           const items = order.items.map(i =>
-            `<li>${i.name} x ${i.quantity} (₹${parseFloat(i.currentPrice).toFixed(2)})</li>`
+            `<li>${i.name} x ${i.quantity}</li>`
           ).join("");
+
+          const statusClass = order.paymentMode === "COD" ? "status-pending" : "status-confirmed";
 
           return `
             <div class="order-card">
               <div class="order-header">
-                <span>Order ID: #${order.id.toString().slice(-6)}</span>
-                <span class="total-amount">₹${order.totalAmount}</span>
+                <div>
+                  <strong>Order #${order.id.toString().slice(-6)}</strong>
+                  <br><small style="color:#888">${order.date}</small>
+                </div>
+                <div style="text-align:right">
+                  <span class="status-badge ${statusClass}">${order.paymentMode}</span>
+                  <br><strong style="color:var(--primary)">₹${order.totalAmount}</strong>
+                </div>
               </div>
-              <div class="order-details">
-                <p><strong>Date:</strong> ${order.date}</p>
-                <p><strong>Status:</strong> <span style="color:${order.paymentMode === "COD" ? "#007185" : "#4CAF50"};">Confirmed</span></p>
-                <p><strong>Payment:</strong> ${order.paymentMode}</p>
-                <p><strong>Shipping to:</strong> ${order.shipping.address.substring(0, 60)}...</p>
-                <strong>Items Ordered:</strong>
-                <ul class="item-list">${items}</ul>
+              <ul class="item-list">${items}</ul>
+              <div style="margin-top:10px; font-size:0.9rem; color:#555">
+                📍 ${order.shipping.address.substring(0, 50)}...
               </div>
             </div>`;
         }).join("");
       }
 
+      // --- Tab Switching ---
+      window.switchTab = function (tabName) {
+        // Hide all tabs
+        document.querySelectorAll('.dashboard-tab').forEach(t => t.style.display = 'none');
+        document.querySelectorAll('.dashboard-menu button').forEach(b => b.classList.remove('active'));
 
-      updateCartCount();
-      const userId = checkLoginStatus();
-      if (userId) renderOrders(userId);
+        if (tabName === 'cart') {
+          window.location.href = 'cart.html';
+          return;
+        }
+
+        // Show selected
+        const selectedTab = document.getElementById(`tab-${tabName}`);
+        if (selectedTab) selectedTab.style.display = 'block';
+
+        // Update Button
+        const btn = document.querySelector(`button[onclick="switchTab('${tabName}')"]`);
+        if (btn) btn.classList.add('active');
+      }
+
+      // --- Logout ---
+      window.logout = function () {
+        if (confirm("Are you sure you want to logout?")) {
+          const userId = getUserId();
+          localStorage.removeItem("user_logged_in");
+          localStorage.removeItem("user_data");
+          localStorage.removeItem("user_email");
+          localStorage.removeItem("loggedInUser");
+          if (userId) {
+            localStorage.removeItem(`homemade_cart_user_${userId}`);
+          }
+          window.location.href = "login.html";
+        }
+      }
+
+      initDashboard();
     });
   </script>
 </body>

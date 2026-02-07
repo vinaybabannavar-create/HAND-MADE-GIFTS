@@ -5,264 +5,500 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login - HomeMadeGifts</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Playfair Display for elegance, Montserrat for modern feel -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles/premium.css">
 
   <style>
+    :root {
+      --gold: #d4af37;
+      --gold-hover: #f9d970;
+      --dark-bg: #121212;
+      --glass-dark: rgba(20, 20, 20, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
     }
 
     body {
+      font-family: 'Montserrat', sans-serif;
+      /* Premium Dark Gradient Background */
+      background: radial-gradient(circle at 10% 20%, #202020 0%, #000000 90%);
+      color: #fff;
       min-height: 100vh;
-      background: linear-gradient(135deg, #1f1f1f, #3a3a3a);
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      overflow-y: auto;
+      /* Allow vertical scrolling */
+    }
+
+    /* Ensure header sits on top */
+    .main-header {
+      position: relative;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.8) !important;
+      /* Make header slightly translucent */
+      backdrop-filter: blur(10px);
+    }
+
+    /* Modify container to allow scrolling if content overflows */
+    .auth-container {
+      flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
-      overflow-x: hidden;
-      animation: bgMove 12s ease-in-out infinite alternate;
+      /* Center normally */
+      padding: 40px 20px;
+      position: relative;
+      min-height: 100%;
+      /* Ensure it fills space */
     }
 
-    @keyframes bgMove {
-      0% {
-        background-size: 100% 100%;
+    /* Fallback for very short screens */
+    @media (max-height: 700px) {
+      .auth-container {
+        align-items: flex-start;
+        /* Align top so scroll works */
+        padding-top: 80px;
+        /* Space for header */
       }
+    }
 
+    /* Decorative Background Elements */
+    .bg-shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: 0;
+    }
+
+    .shape-1 {
+      width: 300px;
+      height: 300px;
+      background: rgba(212, 175, 55, 0.15);
+      /* Gold glow */
+      top: 10%;
+      left: 20%;
+      animation: float 10s ease-in-out infinite;
+    }
+
+    .shape-2 {
+      width: 250px;
+      height: 250px;
+      background: rgba(194, 24, 91, 0.1);
+      /* Pink/Red glow */
+      bottom: 20%;
+      right: 20%;
+      animation: float 12s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+
+      0%,
       100% {
-        background-size: 120% 120%;
+        transform: translate(0, 0);
+      }
+
+      50% {
+        transform: translate(20px, -20px);
       }
     }
 
-
+    /* Glass Card */
     .login-box {
       width: 100%;
-      max-width: 380px;
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 15px;
-      color: #fff;
-      text-align: center;
-      padding: 2rem;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-      animation: fadeIn 0.9s ease-out;
+      max-width: 420px;
+      background: var(--glass-dark);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      z-index: 10;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.9);
-      }
-
+    @keyframes slideUp {
       to {
         opacity: 1;
-        transform: scale(1);
+        transform: translateY(0);
       }
     }
 
-    .login-box h2 {
-      margin-bottom: 1rem;
-      font-weight: 600;
-      letter-spacing: 1px;
+    .login-header {
+      text-align: center;
+      margin-bottom: 30px;
     }
 
-
-    label {
-      display: block;
-      text-align: left;
-      font-size: 0.9rem;
-      margin-top: 1rem;
-      margin-bottom: 0.3rem;
-      color: rgba(255, 255, 255, 0.9);
+    .login-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
     }
 
-    input {
-      width: 100%;
-      padding: 0.7rem;
-      border: none;
-      border-radius: 8px;
-      outline: none;
-      background: rgba(255, 255, 255, 0.9);
-      color: #333;
+    .login-header p {
+      color: rgba(255, 255, 255, 0.7);
       font-size: 0.95rem;
-      transition: box-shadow 0.2s, transform 0.2s;
     }
 
-    input:focus {
-      transform: scale(1.03);
-      box-shadow: 0 0 8px #ffb347;
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
     }
 
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
 
-    .btn-primary,
-    .btn-secondary {
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input-wrapper input {
       width: 100%;
-      padding: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 14px 14px 14px 45px;
+      color: #fff;
+      font-size: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .input-wrapper input:focus {
+      outline: none;
+      border-color: var(--gold);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+    }
+
+    .input-wrapper input::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.5);
+      pointer-events: none;
+      transition: color 0.3s;
+    }
+
+    .input-wrapper input:focus+.input-icon {
+      color: var(--gold);
+    }
+
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      font-size: 0.85rem;
+    }
+
+    .forgot-link {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .forgot-link:hover {
+      text-decoration: underline;
+      color: var(--gold-hover);
+    }
+
+    /* Buttons */
+    .btn-login {
+      width: 100%;
+      background: linear-gradient(135deg, #d4af37, #b48b1d);
+      color: #000;
       border: none;
-      border-radius: 8px;
-      margin-top: 1rem;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-      font-size: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
     }
 
-    .btn-primary {
-      background: #fff;
-      color: #e91e63;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    .btn-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+      background: linear-gradient(135deg, #e6c35c, #c69d2f);
     }
 
-    .btn-primary:hover {
-      background: #fbe4ec;
-      transform: scale(1.05);
+    .btn-login:active {
+      transform: translateY(0);
     }
-
-    .btn-secondary {
-      background: transparent;
-      border: 1px solid #fff;
-      color: #fff;
-    }
-
-    .btn-secondary:hover {
-      background: #fff;
-      color: #e91e63;
-      transform: scale(1.05);
-    }
-
 
     .separator {
-      margin: 1.5rem 0;
-      font-size: 0.85rem;
-      color: #eee;
-      position: relative;
+      margin: 25px 0;
       text-align: center;
+      position: relative;
     }
 
-    .separator span::before,
-    .separator span::after {
-      content: "";
+    .separator::before {
+      content: '';
       position: absolute;
-      width: 35%;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.4);
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .separator span::before {
       left: 0;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
     }
 
-    .separator span::after {
+    .separator::after {
+      content: '';
+      position: absolute;
       right: 0;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .separator span {
+      background: transparent;
+      padding: 0 10px;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.85rem;
+    }
+
+    .btn-register {
+      width: 100%;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      padding: 13px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-register:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: #fff;
     }
 
     .footer-text {
-      margin-top: 1rem;
+      text-align: center;
+      margin-top: 25px;
       font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.75);
+      color: rgba(255, 255, 255, 0.4);
     }
 
+    .footer-text a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+    }
 
+    /* Mobile Responsive */
     @media (max-width: 480px) {
       .login-box {
-        width: 90%;
-        padding: 1.6rem;
+        padding: 30px 20px;
       }
 
-      input,
-      .btn-primary,
-      .btn-secondary {
-        font-size: 0.95rem;
+      .login-header h2 {
+        font-size: 1.8rem;
       }
+    }
 
-      .btn-primary,
-      .btn-secondary {
-        padding: 0.65rem;
-      }
+    /* === AUTH PAGE HEADER OVERRIDES === */
+    /* Hide unnecessary header elements for a clean look */
+    .header-promo-bar,
+    .search-container-modern,
+    .main-nav-modern,
+    .user-actions {
+      display: none !important;
+    }
+
+    /* Make header transparent and floating */
+    .main-header {
+      background: transparent !important;
+      backdrop-filter: none !important;
+      box-shadow: none !important;
+      border: none !important;
+      position: absolute !important;
+      top: 0;
+      width: 100%;
+      padding-top: 20px;
+    }
+
+    /* Center the Logo */
+    .header-container {
+      justify-content: center !important;
+    }
+
+    .header-logo-section {
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    /* Adjust Logo Colors for Dark Theme */
+    .shop-logo .logo-text {
+      color: #fff !important;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .shop-logo .logo-main {
+      color: var(--gold) !important;
+    }
+
+    .logo-tagline {
+      color: rgba(255, 255, 255, 0.8) !important;
+      text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
     }
   </style>
 </head>
 
 <body>
-  <div class="login-box">
-    <h2>Welcome Back 💫</h2>
+  <!-- Header injected by universal-header.js -->
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
 
-    <form id="login-form">
-      <label for="email">Email</label>
-      <input type="email" id="email" placeholder="e.g. user@homemadegifts.com" required>
+  <main class="auth-container">
+    <div class="login-box">
+      <div class="login-header">
+        <h2>Welcome Back</h2>
+        <p>Sign in to continue your curated journey</p>
+      </div>
 
-      <label for="password">Password</label>
-      <input type="password" id="password" placeholder="Enter your password" required>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <div class="input-wrapper">
+            <input type="email" id="email" placeholder="you@example.com" required>
+            <span class="input-icon">✉️</span>
+          </div>
+        </div>
 
-      <button type="submit" class="btn-primary">Login</button>
-    </form>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrapper">
+            <input type="password" id="password" placeholder="••••••••" required>
+            <span class="input-icon">🔒</span>
+          </div>
+        </div>
 
-    <p class="separator"><span>New to HandMadeGifts?</span></p>
-    <button class="btn-secondary" onclick="window.location.href='create-account.html'">Create your account</button>
+        <div class="form-options">
+          <label
+            style="display: flex; align-items: center; gap: 5px; cursor: pointer; margin: 0; color: rgba(255,255,255,0.6);">
+            <input type="checkbox" style="width: auto; margin-right: 5px;"> Remember me
+          </label>
+          <a href="#" class="forgot-link" id="forgot-password">Forgot Password?</a>
+        </div>
 
-    <p class="footer-text">© 2025 HandMadeGifts | All Rights Reserved</p>
-  </div>
+        <button type="submit" class="btn-login">Sign In</button>
+      </form>
+
+      <div class="separator">
+        <span>New Here?</span>
+      </div>
+
+      <button class="btn-register" onclick="window.location.href='create-account.html'">
+        Create Account
+      </button>
+
+      <div class="footer-text">
+        <p>By signing in, you agree to our <a href="#">Terms</a> & <a href="#">Privacy Policy</a></p>
+      </div>
+    </div>
+  </main>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('login-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const btn = document.querySelector('.btn-login');
 
-      if (localStorage.getItem('user_logged_in') === 'true') {
-        window.location.href = 'index.html';
-        return;
+      // Add loading state
+      const originalText = btn.innerText;
+      btn.innerText = "Verifying...";
+      btn.style.opacity = "0.7";
+
+      setTimeout(() => {
+        // Check user credentials
+        const userRecord = localStorage.getItem(`user_${email}`);
+
+        if (userRecord) {
+          const userData = JSON.parse(userRecord);
+          if (userData.password === password) {
+            // Login Success
+            localStorage.setItem('user_logged_in', 'true');
+            localStorage.setItem('user_data', JSON.stringify(userData));
+
+            // Merge guest cart if any
+            const guestCartKey = 'homemade_cart_guest';
+            const userCartKey = `homemade_cart_user_${userData.id}`;
+            const guestCart = JSON.parse(localStorage.getItem(guestCartKey)) || [];
+            const userCart = JSON.parse(localStorage.getItem(userCartKey)) || [];
+
+            if (guestCart.length > 0) {
+              const mergedCart = [...userCart, ...guestCart];
+              // Use a Map to de-duplicate by ID
+              const uniqueCart = Array.from(new Map(mergedCart.map(item => [item.id, item])).values());
+              localStorage.setItem(userCartKey, JSON.stringify(uniqueCart));
+              localStorage.removeItem(guestCartKey);
+            }
+
+            alert(`Welcome back, ${userData.name}!`);
+            window.location.href = "index.html";
+          } else {
+            alert("Incorrect password. Please try again.");
+            btn.innerText = originalText;
+            btn.style.opacity = "1";
+          }
+        } else {
+          alert("Account not found. Please register first.");
+          btn.innerText = originalText;
+          btn.style.opacity = "1";
+        }
+      }, 800); // Fake delay for UX
+    });
+
+    // Handle Forgot Password (Simulation)
+    document.getElementById('forgot-password').addEventListener('click', (e) => {
+      e.preventDefault();
+      const email = prompt("Enter your registered email:");
+      if (email) {
+        alert(`Password reset link sent to ${email}`);
       }
-
-      document.getElementById('login-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const email = document.getElementById('email').value.trim();
-        const password = document.getElementById('password').value.trim();
-
-        if (!email || !password) {
-          alert('⚠️ Please enter both email and password.');
-          return;
-        }
-
-        const users = JSON.parse(localStorage.getItem('registered_users')) || [];
-        const user = users.find(
-          u => u.email.toLowerCase() === email.toLowerCase() && u.password === password
-        );
-
-        if (!user) {
-          alert('❌ Invalid email or password.');
-          return;
-        }
-
-
-        const userIdentifier = user.email;
-        const cartKey = `homemade_cart_user_${userIdentifier}`;
-
-
-        localStorage.setItem('user_logged_in', 'true');
-        localStorage.setItem('user_data', JSON.stringify({
-          email: user.email,
-          id: userIdentifier,
-          isNewUser: user.isNewUser || 'false'
-        }));
-
-
-        localStorage.removeItem('user_email');
-        localStorage.removeItem('loggedInUser');
-
-
-        if (!localStorage.getItem(cartKey)) {
-          localStorage.setItem(cartKey, JSON.stringify([]));
-        }
-
-        alert(`🎉 Welcome back, ${email.split('@')[0]}!`);
-        window.location.href = 'index.html';
-      });
     });
   </script>
+
+  <!-- Core Scripts -->
+  <script src="scripts/cart-manager.js"></script>
+  <script src="scripts/universal-header.js"></script>
+  <script src="scripts/product-enhancements.js"></script>
 </body>
 
 </html>

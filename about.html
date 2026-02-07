@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us & How to Order - HandMade Gifts</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/premium.css">
 
   <style>
     body {
@@ -216,6 +217,16 @@
       background-color: #f9a43a;
     }
 
+    /* CUSTOM ABOUT PAGE STYLES */
+    .about-story-section {
+      padding: 60px 20px;
+      background: white;
+      border-radius: 20px;
+      margin: 40px auto;
+      max-width: 1000px;
+      box-shadow: var(--shadow);
+    }
+
     .main-footer {
       background-color: #222;
       color: #fff;
@@ -267,35 +278,11 @@
 </head>
 
 <body>
-  <header class="main-header">
-    <div class="header-top">
-      <div class="shop-logo">
-        <a href="index.html">HandMadeGifts🛍️</a>
-      </div>
-
-      <div class="search-bar">
-        <input type="text" placeholder="Search for Gifts, Hampers, or Products...">
-        <button>🔍</button>
-      </div>
-
-      <nav class="user-nav">
-        <a href="#" id="user-email"></a>
-        <a href="#" class="logout-link" id="logout-link" style="display:none;">Logout</a>
-      </nav>
-    </div>
-
-    <nav class="main-nav">
-      <a href="index.html">Home</a>
-      <a href="about.html" class="active">About & How to Order</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="contact.html">Contact Us</a>
-      <a href="cart.html">Shopping Cart</a>
-    </nav>
-  </header>
+  <!-- Header injected by universal-header.js -->
 
   <main>
-    <section>
-      <h1 class="page-title">Handcrafted Love: The HomeMadeGifts Story</h1>
+    <section class="about-story-section">
+      <h1 class="page-title animate-fade">Handcrafted Love: The HomeMadeGifts Story</h1>
       <p class="intro-text">
         Welcome to HomeMadeGifts, your destination for unique, handcrafted products and bespoke gift hampers.
         We believe every gift should carry a touch of personal warmth and dedication.
@@ -371,43 +358,10 @@
     <p>© 2025 HomeMadeGifts. All rights reserved.</p>
   </footer>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const emailDisplay = document.getElementById("user-email");
-      const logoutLink = document.getElementById("logout-link");
-
-      const userLoggedIn = localStorage.getItem('user_logged_in') === 'true';
-      const userData = JSON.parse(localStorage.getItem('user_data'));
-
-      if (userLoggedIn && userData && userData.email) {
-        const userName = userData.email.split('@')[0];
-        emailDisplay.textContent = `👋 Hi, ${userName}`;
-        emailDisplay.href = "dashboard.html";
-        logoutLink.style.display = "inline";
-      } else {
-        emailDisplay.textContent = "Sign In / Register";
-        emailDisplay.href = "login.html";
-        logoutLink.style.display = "none";
-      }
-
-      logoutLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        const userId = userData ? (userData.id || userData.email) : null;
-
-        localStorage.removeItem("user_data");
-        localStorage.removeItem("user_logged_in");
-        if (userId) {
-          const cartKey = `homemade_cart_user_${userId}`;
-          localStorage.removeItem(cartKey);
-        }
-        localStorage.removeItem("loggedInUser");
-        localStorage.removeItem("user_email");
-
-        alert("Logged out successfully!");
-        window.location.href = "login.html";
-      });
-    });
-  </script>
+  <!-- Core Scripts -->
+  <script src="scripts/cart-manager.js"></script>
+  <script src="scripts/universal-header.js"></script>
+  <script src="scripts/product-enhancements.js"></script>
 </body>
 
 </html>

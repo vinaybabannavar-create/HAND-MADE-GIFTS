@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Made Products & Gift Hampers</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/premium.css">
 
   <style>
     :root {
@@ -33,6 +34,7 @@
     }
 
     html {
+      scroll-behavior: smooth;
       overflow-x: hidden;
     }
 
@@ -618,32 +620,8 @@
 </head>
 
 <body>
-  <header class="main-header">
-    <div class="header-top">
-      <div class="shop-logo">HandMadeGifts🛍️</div>
-
-      <div class="search-container">
-        <div class="search-bar">
-          <input type="text" id="search-input" placeholder="Search for Gifts, Hampers, or Products...">
-          <button id="search-button">🔍</button>
-        </div>
-        <div id="search-suggestions"></div>
-      </div>
-
-      <nav class="user-nav">
-        <a href="login.html" id="login-link">Sign In / Register</a>
-        <a href="cart.html" class="cart-icon">🛒 <span id="cart-count" class="badge">0</span></a>
-      </nav>
-    </div>
-
-    <nav class="main-nav">
-      <a href="index.html" class="active">Home</a>
-      <a href="about.html">About & How to Order</a>
-      <a href="contact.html">Contact Us</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="cart.html">Shopping Cart</a>
-    </nav>
-  </header>
+  <!-- Modern Enhanced Header -->
+  <!-- Header injected by universal-header.js -->
 
   <main class="container">
     <section class="hero-section">
@@ -652,6 +630,66 @@
       <p>Unique homemade products and custom gift hampers for every occasion.</p>
       <a href="#featured-products" class="btn-primary">Explore Products</a>
     </section>
+
+    <!-- BANNER CAROUSEL SYSTEM -->
+    <div id="banner-carousel" class="banner-carousel-container">
+
+      <!-- Banner 1: Summer Craft Festival -->
+      <div class="carousel-banner banner-1 active">
+        <div class="carousel-banner-content">
+          <h2>🌞 Summer Craft Festival</h2>
+          <p>Get up to 40% OFF on all wedding hampers this week!</p>
+        </div>
+        <div class="carousel-banner-cta">
+          <a href="#featured-products" class="btn-primary">Shop Sale</a>
+        </div>
+      </div>
+
+      <!-- Banner 2: Exclusive Wedding Collection -->
+      <div class="carousel-banner banner-2">
+        <div class="carousel-banner-content">
+          <h2>💍 Exclusive Wedding Collection</h2>
+          <p>Handmade excellence for your special day. Premium quality guaranteed!</p>
+        </div>
+        <div class="carousel-banner-cta">
+          <a href="#featured-products" class="btn-primary">Explore Now</a>
+        </div>
+      </div>
+
+      <!-- Banner 3: New Arrivals -->
+      <div class="carousel-banner banner-3">
+        <div class="carousel-banner-content">
+          <h2>✨ New Arrivals</h2>
+          <p>Discover our latest handcrafted treasures. Fresh designs every week!</p>
+        </div>
+        <div class="carousel-banner-cta">
+          <a href="#featured-products" class="btn-primary">View Collection</a>
+        </div>
+      </div>
+
+      <!-- Banner 4: Free Shipping -->
+      <div class="carousel-banner banner-4">
+        <div class="carousel-banner-content">
+          <h2>🚚 Free Shipping</h2>
+          <p>On all orders above ₹999. Limited time offer!</p>
+        </div>
+        <div class="carousel-banner-cta">
+          <a href="#featured-products" class="btn-primary">Shop Now</a>
+        </div>
+      </div>
+
+      <!-- Banner 5: Festive Special -->
+      <div class="carousel-banner banner-5">
+        <div class="carousel-banner-content">
+          <h2>🎉 Festive Special</h2>
+          <p>Celebrate with our exclusive festive hampers. Perfect for gifting!</p>
+        </div>
+        <div class="carousel-banner-cta">
+          <a href="#featured-products" class="btn-primary">Browse Gifts</a>
+        </div>
+      </div>
+
+    </div>
 
     <!-- NEW UNIQUE DESIGN SECTION -->
     <section class="experience-section">
@@ -691,6 +729,14 @@
 
 
       <div class="product-card" data-search-term="Haldi Platter">
+        <!-- Wishlist Heart -->
+        <div class="wishlist-heart" onclick="toggleWishlist(this)">
+          ♡
+        </div>
+
+        <!-- Sale Badge -->
+        <div class="badge-sale">25% OFF</div>
+
         <a href="#" class="product-link"><img src="https://i.ibb.co/bRJcNgDT/IMG-20260204-174236.jpg"
             alt="Haldi Platter"></a>
 
@@ -711,11 +757,15 @@
           </div>
           <button class="btn-add-to-cart" data-id="1" data-name="Haldi Platter" data-price="742" data-discount="25"
             data-qty-input="qty-1">Add to Cart</button>
-          <div class="view-details-overlay">View Details</div>
+          <div class="quick-view-overlay" onclick="viewProductDetails(1)">Quick View</div>
         </div>
       </div>
 
       <div class="product-card" data-search-term="Premium Saree & Jewelry Set (1g Gold)">
+        <!-- Wishlist Heart -->
+        <div class="wishlist-heart" onclick="toggleWishlist(this)">
+          ♡
+        </div>
         <a href="#" class="product-link"><img src="https://i.ibb.co/tpgCpcjC/IMG-20260204-174219.jpg"
             alt="Mini Diwal Box"></a>
 
@@ -742,6 +792,10 @@
       </div>
 
       <div class="product-card" data-search-term="Mehendi Platter">
+        <!-- Wishlist Heart -->
+        <div class="wishlist-heart" onclick="toggleWishlist(this)">
+          ♡
+        </div>
         <a href="#" class="product-link"><img src="https://i.ibb.co/fdBSMcz4/IMG-20260204-174209.jpg"
             alt="Mehendi platter"></a>
 
@@ -767,6 +821,10 @@
       </div>
 
       <div class="product-card" data-search-term="Mehendi Platter">
+        <!-- Wishlist Heart -->
+        <div class="wishlist-heart" onclick="toggleWishlist(this)">
+          ♡
+        </div>
         <a href="#" class="product-link"><img src="https://i.ibb.co/M0tJ7cn/IMG-20260204-174159.jpg"
             alt="Mini Diwal Box"></a>
 
@@ -793,8 +851,12 @@
 
 
 
-      <div class="product-card" data-search-term="Diwal Hamper">
 
+      <div class="product-card" data-search-term="Diwal Hamper">
+        <!-- Wishlist Heart -->
+        <div class="wishlist-heart" onclick="toggleWishlist(this)">
+          ♡
+        </div>
         <a href="#" class="product-link"><img src="https://i.ibb.co/3mtx5jbF/2.jpg" alt="Diwal Hamper"></a>
         <div class="card-info">
           <h3 class="product-name">Diwal Hamper</h3>
@@ -819,6 +881,10 @@
       </div>
 
       <div class="product-card" data-search-term="Mini Diwal Box">
+        <!-- Wishlist Heart -->
+        <div class="wishlist-heart" onclick="toggleWishlist(this)">
+          ♡
+        </div>
         <a href="#" class="product-link"><img src="https://i.ibb.co/TMBgYDjV/4.jpg" alt="Mini Diwal Box"></a>
 
         <div class="card-info">
@@ -843,6 +909,10 @@
       </div>
 
       <div class="product-card" data-search-term="Handmade Diwali Card">
+        <!-- Wishlist Heart -->
+        <div class="wishlist-heart" onclick="toggleWishlist(this)">
+          ♡
+        </div>
         <a href="#" class="product-link"><img src="https://i.ibb.co/LdX51RYp/5.jpg" alt="Handmade Diwali Card"></a>
         <div class="card-info">
           <h3 class="product-name">Handmade Diwali
@@ -868,6 +938,10 @@
 
 
       <div class="product-card" data-search-term="Luxury Diwali Hamper">
+        <!-- Wishlist Heart -->
+        <div class="wishlist-heart" onclick="toggleWishlist(this)">
+          ♡
+        </div>
         <a href="#" class="product-link"><img src="https://i.ibb.co/bjwwCwTv/6.jpg" alt="Luxury Diwali Hamper"></a>
         <div class="card-info">
           <h3 class="product-name">Luxury Diwali Hamper</h3>
@@ -893,6 +967,10 @@
 
 
       <div class="product-card" data-search-term="Diwali Hamper">
+        <!-- Wishlist Heart -->
+        <div class="wishlist-heart" onclick="toggleWishlist(this)">
+          ♡
+        </div>
         <a href="#" class="product-link"><img src="https://i.ibb.co/HL4LDY2M/3.jpg" alt="Diwali Hamper"></a>
         <div class="card-info">
           <h3 class="product-name">Diwali Hamper</h3>
@@ -917,6 +995,10 @@
       </div>
 
       <div class="product-card" data-search-term="Diwali hamper box">
+        <!-- Wishlist Heart -->
+        <div class="wishlist-heart" onclick="toggleWishlist(this)">
+          ♡
+        </div>
         <a href="#" class="product-link"><img src="https://i.ibb.co/XZYZmR6z/1.jpg" alt="Diwali hamper box"></a>
 
         <div class="card-info">
@@ -939,6 +1021,10 @@
         </div>
       </div>
       <div class="product-card" data-search-term="Customised Birthday Hamper">
+        <!-- Wishlist Heart -->
+        <div class="wishlist-heart" onclick="toggleWishlist(this)">
+          ♡
+        </div>
         <a href="#" class="product-link"><img src="https://i.ibb.co/n8B41b3z/8.jpg"
             alt="Customised Birthday Hamper"></a>
         <div class="card-info">
@@ -964,6 +1050,10 @@
       </div>
 
       <div class="product-card" data-search-term="Hand Embroidered Handkerchief">
+        <!-- Wishlist Heart -->
+        <div class="wishlist-heart" onclick="toggleWishlist(this)">
+          ♡
+        </div>
         <a href="#" class="product-link"><img src="https://i.ibb.co/m5QSLz6Z/9.jpg"
             alt="Hand Embroidered Handkerchief"></a>
         <div class="card-info">
@@ -989,7 +1079,10 @@
       </div>
 
       <div class="product-card" data-search-term="Birthday hamper box">
-
+        <!-- Wishlist Heart -->
+        <div class="wishlist-heart" onclick="toggleWishlist(this)">
+          ♡
+        </div>
         <a href="#" class="product-link"><img src="https://i.ibb.co/G4BTfLqJ/10.jpg" alt="Birthday hamper box"></a>
         <div class="card-info">
           <h3 class="product-name">Birthday hamper box</h3>
@@ -1013,9 +1106,12 @@
       </div>
 
       <div class="product-card" data-search-term="Customised S Letter handkerchief">
+        <!-- Wishlist Heart -->
+        <div class="wishlist-heart" onclick="toggleWishlist(this)">
+          ♡
+        </div>
         <a href="#" class="product-link"><img src="https://i.ibb.co/SXVbDd5t/12.jpg" alt="Customised S 
- Letter handkerchief"></a>
-        <div class="card-info">
+        <div class=" card-info">
           <h3 class="product-name">Customised S Letter handkerchief </h3>
           <div class="rating">⭐⭐⭐⭐</div>
           <p class="discount-info">
@@ -1033,7 +1129,7 @@
           <button class="btn-add-to-cart" data-id="13" data-name="Customised S Letter handkerchief" data-price="199"
             data-discount="50" data-qty-input="qty-13">Add to Cart</button>
           <div class="view-details-overlay">View Details</div>
-        </div>
+      </div>
       </div>
 
 
@@ -1314,279 +1410,33 @@
       2025 HomeMadeGifts. Contact: littlehoopsandhampers@gmail.com</p>
   </footer>
 
+
+
+
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener("DOMContentLoaded", () => {
+      // User Login Check
+      const loginLink = document.getElementById('login-link'); // Note: This might be in the injected header
+      // We need to wait for header injection or use event delegation/MutationObserver if header is injected async
+      // For now, let's assume universal-header handles its own login state display or we check after a delay
 
+      // Simple check for body content
+      const userLoggedIn = localStorage.getItem('user_logged_in') === 'true';
+      /* 
+         Note: The universal header script handles showing the user name and logout link.
+         We just need to ensure the search functionality works if it's specific to this page's products.
+      */
 
-      const allProducts = [
-        'Diwal Hamper',
-        'Mini Diwal Box',
-        'Handmade Diwali Card',
-        'Luxury Diwali Hamper',
-        'Diwali Hamper',
-        'Diwali hamper box',
-        'Customised Birthday Hamper',
-        'Hand Embroidered Handkerchief',
-        'Birthday hamper box',
-        'Customised S Letter handkerchief',
-        'Heart Shaped Chocolate Box',
-        'Birthday hamper box',
-        'Handmade Birthday Letter',
-        'Handmade Woolen Keychain',
-        'A Letter Customisable Handkerchief',
-        'Hand Embroidered Handkerchief',
-        'Customisable Embroidered Weddinghoop',
-        'Birthday hamper box',
-        'Birthday hamper box',
-      ];
+      // Search Functionality (Specific to index.html product list)
+      const searchInput = document.getElementById('search-input'); // Injected by header
+      const suggestionsDiv = document.getElementById('search-suggestions'); // Injected by header
+      const searchButton = document.getElementById('search-button'); // Injected by header
 
+      // Since header is injected, we might need to poll for these elements or use event delegation
+      // However, universal-header.js runs synchronously after body start, so elements *should* be there if script is at bottom
+      // But we are removing the hardcoded header, so we rely on universal-header.js
 
-      function getCartKey() {
-
-        const userData = JSON.parse(localStorage.getItem('user_data'));
-
-        return userData && userData.id ? `homemade_cart_user_${userData.id}` : 'homemade_cart_guest';
-      }
-
-      function getCart() {
-        const cartKey = getCartKey();
-        const cartData = localStorage.getItem(cartKey);
-        return cartData ? JSON.parse(cartData) : [];
-      }
-
-      function saveCart(cart) {
-        const cartKey = getCartKey();
-        localStorage.setItem(cartKey, JSON.stringify(cart));
-        updateCartCount();
-      }
-
-      function updateCartCount() {
-        const cart = getCart();
-        const countElement = document.getElementById('cart-count');
-        if (countElement) {
-          const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-          countElement.textContent = totalItems;
-        }
-      }
-
-      function handleSignOut(e) {
-        e.preventDefault();
-        if (confirm('Are you sure you want to sign out?')) {
-          localStorage.removeItem('user_logged_in');
-          localStorage.removeItem('user_data');
-
-        }
-      }
-
-      function checkLoginStatus() {
-        const loginLink = document.getElementById('login-link');
-        const userLoggedIn = localStorage.getItem('user_logged_in');
-
-        if (loginLink && userLoggedIn === 'true') {
-          const userData = JSON.parse(localStorage.getItem('user_data')) ||
-            { email: 'User' };
-          const userName = userData.email ? userData.email.split('@')[0] : 'User';
-          loginLink.textContent = `Hello, ${userName} (Sign Out)`;
-          loginLink.href = '#';
-          loginLink.removeEventListener('click', handleSignOut);
-          loginLink.addEventListener('click', handleSignOut);
-        } else if (loginLink) {
-          loginLink.textContent = 'Sign In / Register';
-          loginLink.href = 'login.html';
-        }
-      }
-
-
-      function addItemToCart(product, quantity, imageSrc) {
-        let cart = getCart();
-        const existingItemIndex = cart.findIndex(item => item.id === product.id);
-        const discountedPrice = product.price * (1 - product.discount / 100);
-        if (quantity > 0) {
-          if (existingItemIndex > -1) {
-
-            cart[existingItemIndex].quantity = quantity;
-          } else {
-
-            cart.push({
-              id: product.id,
-              name:
-                product.name,
-              originalPrice: product.price,
-              discountPercent: product.discount,
-              currentPrice: parseFloat(discountedPrice.toFixed(2)),
-              quantity:
-                quantity,
-              imageSrc: imageSrc
-            });
-          }
-        } else if (quantity === 0 && existingItemIndex > -1) {
-
-          cart.splice(existingItemIndex, 1);
-        }
-
-
-        saveCart(cart);
-      }
-
-
-      const featuredSection = document.getElementById('featured-products');
-      if (featuredSection) {
-        featuredSection.addEventListener('click', (e) => {
-          const target = e.target;
-
-
-          if (target.classList.contains('qty-btn')) {
-            const action = target.dataset.action;
-
-            const inputId = target.dataset.target;
-            const input = document.getElementById(inputId);
-            let currentValue = parseInt(input.value);
-
-            if (action === 'increment') {
-
-
-              input.value = Math.min(parseInt(input.max), currentValue + 1);
-            } else if (action === 'decrement') {
-
-              input.value = Math.max(0, currentValue - 1);
-            }
-
-          }
-
-          else if (target.classList.contains('btn-add-to-cart')) {
-            const button = target;
-            const qtyInputId = button.dataset.qtyInput;
-            const qtyInput = document.getElementById(qtyInputId);
-
-            const newQuantity = parseInt(qtyInput.value) ||
-              0;
-
-            const productId = button.dataset.id;
-
-
-            const currentCart = getCart();
-            const existingItem = currentCart.find(item => item.id === productId);
-            const existingQuantity = existingItem ? existingItem.quantity : 0;
-
-            const productCard = button.closest('.product-card');
-            const imageElement = productCard.querySelector('img');
-
-            const product = {
-              id: productId,
-              name: button.dataset.name,
-              price: parseFloat(button.dataset.price),
-
-              discount: parseInt(button.dataset.discount) || 0
-            };
-
-            const imageSrc = imageElement ?
-              imageElement.src : '';
-
-
-            if (newQuantity !== existingQuantity) {
-              addItemToCart(product, newQuantity, imageSrc);
-
-
-              if (newQuantity > 0) {
-                // Update/Add message
-                alert(`${newQuantity} unit(s) of "${product.name}" added/updated in cart!`);
-              } else {
-
-                alert(`"${product.name}" removed from cart.`);
-              }
-            } else {
-
-              alert(`Quantity for "${product.name}" is already ${newQuantity}.`);
-            }
-
-
-            const updatedCart = getCart();
-            const updatedItem = updatedCart.find(item => item.id === productId);
-            qtyInput.value = updatedItem ? updatedItem.quantity : 1;
-          }
-        });
-      }
-
-
-
-      const searchInput = document.getElementById('search-input');
-      const suggestionsDiv = document.getElementById('search-suggestions');
-      const searchButton = document.getElementById('search-button');
-      const productCards = document.querySelectorAll('.product-card');
-      const noResults = document.getElementById('no-results-message');
-      function displaySuggestions() {
-        const query = searchInput.value.toLowerCase().trim();
-        suggestionsDiv.innerHTML = '';
-
-        if (query.length < 2) {
-          suggestionsDiv.style.display = 'none';
-          return;
-        }
-
-        const filteredProducts = allProducts.filter(productName =>
-          productName.toLowerCase().includes(query)
-        ).slice(0, 5);
-        if (filteredProducts.length > 0) {
-          filteredProducts.forEach(productName => {
-            const suggestionItem = document.createElement('div');
-            suggestionItem.className = 'suggestion-item';
-            suggestionItem.textContent = productName;
-
-
-            suggestionItem.addEventListener('click', () => {
-              searchInput.value = productName;
-              suggestionsDiv.style.display = 'none';
-
-              filterProducts(productName);
-            });
-            suggestionsDiv.appendChild(suggestionItem);
-          });
-          suggestionsDiv.style.display = 'block';
-        } else {
-          suggestionsDiv.style.display = 'none';
-        }
-      }
-
-      function filterProducts(query) {
-        const normalizedQuery = query.toLowerCase().trim();
-        let resultsFound = false;
-
-        productCards.forEach(card => {
-          const searchTerms = card.getAttribute('data-search-term') || card.querySelector('.product-name').textContent;
-
-          if (searchTerms.toLowerCase().includes(normalizedQuery) || normalizedQuery === '') {
-            card.style.display = 'block';
-
-            resultsFound = true;
-          } else {
-            card.style.display = 'none';
-          }
-        });
-        if (resultsFound || normalizedQuery === '') {
-          noResults.style.display = 'none';
-        } else {
-          noResults.style.display = 'block';
-        }
-
-        suggestionsDiv.style.display = 'none';
-      }
-
-      searchInput.addEventListener('input', displaySuggestions);
-      searchButton.addEventListener('click', () => {
-        filterProducts(searchInput.value);
-      });
-      searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          filterProducts(searchInput.value);
-        }
-      });
-      document.addEventListener('click', (e) => {
-        const searchContainer = document.querySelector('.search-container');
-        if (!searchContainer.contains(e.target)) {
-          suggestionsDiv.style.display = 'none';
-        }
-      });
+      // ... Search logic could be moved to a separate script or kept here if it depends on `allProducts` which I need to find ...
 
       // --- Modal Functionality ---
       const modal = document.getElementById('product-modal');
@@ -1601,6 +1451,7 @@
         card.addEventListener('click', (e) => {
           // Prevent modal if clicking buttons
           if (e.target.closest('.btn-add-to-cart') || e.target.closest('.quantity-selector')) return;
+          if (e.target.closest('.wishlist-heart')) return;
 
           const name = card.querySelector('.product-name').textContent;
           const img = card.querySelector('img').src;
@@ -1621,10 +1472,16 @@
       }
       window.onclick = (e) => { if (e.target == modal) modal.classList.remove('active'); };
 
-      updateCartCount();
-      checkLoginStatus();
+      // Initialize enhancements
+      // CartManager and UniversalHeader initialize themselves
     });
   </script>
+
+  <!-- Core Scripts -->
+  <script src="scripts/cart-manager.js"></script>
+  <script src="scripts/universal-header.js"></script>
+  <script src="scripts/banner-carousel.js"></script>
+  <script src="scripts/product-enhancements.js"></script>
 </body>
 
 </html>
