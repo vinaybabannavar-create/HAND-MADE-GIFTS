@@ -187,10 +187,26 @@
     @media (max-width: 768px) {
       .checkout-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
       }
 
       .checkout-card {
         padding: 20px;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .summary-total {
+        font-size: 1.2rem;
+      }
+
+      .checkout-card h3 {
+        font-size: 1.2rem;
       }
     }
   </style>

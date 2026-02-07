@@ -102,6 +102,8 @@ h3,
     box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
     cursor: pointer;
     transition: all 0.3s ease !important;
+    display: inline-block;
+    text-decoration: none;
 }
 
 .btn-primary:hover,
@@ -523,11 +525,11 @@ section h2::after {
         flex-direction: column;
         text-align: center;
         padding: 40px 20px;
-        min-height: 400px;
+        min-height: 350px;
     }
 
     .carousel-banner-content h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
         text-align: center;
     }
 
@@ -535,67 +537,96 @@ section h2::after {
         font-size: 1rem;
     }
 
+    .carousel-banner-cta .btn-primary {
+        padding: 10px 25px !important;
+        font-size: 1rem;
+    }
+
     .carousel-control {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
     }
 
     .carousel-prev {
-        left: 10px;
+        left: 5px;
     }
 
     .carousel-next {
-        right: 10px;
+        right: 5px;
     }
 }
 
-/* Smooth Scroll Enhancement */
-html {
-    scroll-behavior: smooth;
-}
+@media (max-width: 900px) {
+    .header-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        text-align: center;
+        padding: 15px;
+    }
 
-/* Loading Animation */
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
+    .header-logo-section {
+        align-items: center;
+    }
+
+    .logo-tagline {
+        padding-left: 0;
+    }
+
+    .search-container-modern {
+        max-width: 100%;
+        order: 3;
+    }
+
+    .user-actions {
+        justify-content: center;
+        width: 100%;
+        order: 2;
+    }
+
+    .action-btn {
+        padding: 8px 10px;
+    }
+
+    .action-label {
+        font-size: 0.75rem;
+    }
+
+    .main-nav-modern .nav-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+        padding: 10px 5px;
+    }
+
+    .nav-link {
+        font-size: 0.75rem;
+        padding: 8px 10px;
+        min-width: 80px;
     }
 }
 
-.loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid rgba(212, 175, 55, 0.2);
-    border-top-color: var(--primary);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
+@media (max-width: 480px) {
+    .logo-main {
+        font-size: 1.2rem;
+    }
 
-/* ========================================
-   MODERN HEADER STYLES
-   ======================================== */
+    .logo-sub {
+        font-size: 1rem;
+    }
 
-/* Promo Bar */
-.header-promo-bar {
-    background: linear-gradient(135deg, var(--accent) 0%, #E91E63 100%);
-    color: white;
-    padding: 10px 0;
-    text-align: center;
-    font-size: 0.9rem;
-    font-weight: 500;
-    animation: slideDown 0.5s ease;
-}
+    .logo-icon {
+        font-size: 2rem;
+    }
 
-.promo-message {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-}
+    .action-label {
+        display: none;
+        /* Hide labels on very small screens to save space */
+    }
 
-.promo-icon {
-    font-size: 1.2rem;
-    animation: pulse 2s infinite;
+    .action-icon {
+        font-size: 1.5rem;
+    }
 }
 
 @keyframes slideDown {
