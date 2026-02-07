@@ -105,6 +105,10 @@
           <span class="nav-icon">🛍️</span>
           <span>Shopping</span>
         </a>
+        <a href="index.html#featured-products" class="nav-link">
+          <span class="nav-icon">✨</span>
+          <span>Explore Products</span>
+        </a>
         <div class="nav-indicator"></div>
       </div>
     </nav>

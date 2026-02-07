@@ -102,11 +102,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Enhanced add to cart with celebration
+    // Enhanced add to cart and quantity buttons with celebration
     // Delegate to document body for dynamically added buttons
     document.body.addEventListener('click', function (e) {
-        if (e.target.closest('.btn-add-to-cart')) {
-            const btn = e.target.closest('.btn-add-to-cart');
+        const target = e.target;
+
+        // Handle Quantity Buttons
+        if (target.closest('.qty-btn')) {
+            const btn = target.closest('.qty-btn');
+            const action = btn.dataset.action;
+            const input = document.getElementById(btn.dataset.target);
+
+            if (input) {
+                let currentValue = parseInt(input.value) || 0;
+                let maxValue = parseInt(input.max) || 99;
+
+                if (action === 'increment') {
+                    input.value = Math.min(maxValue, currentValue + 1);
+                } else if (action === 'decrement') {
+                    input.value = Math.max(1, currentValue - 1);
+                }
+            }
+        }
+
+        // Handle Add to Cart
+        if (target.closest('.btn-add-to-cart')) {
+            const btn = target.closest('.btn-add-to-cart');
 
             // Prevent default just in case, but usually we want valid clicks
             // e.preventDefault(); 
